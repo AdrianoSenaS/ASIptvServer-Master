@@ -14,4 +14,8 @@
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASIptvServer.Naming\ASIptvServer.Naming.csproj" />
+  </ItemGroup>
+
 </Project>
