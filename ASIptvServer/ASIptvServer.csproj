@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ASIptvServer.Api\ASIptvServer.Api.csproj" />
+    <ProjectReference Include="..\ASIptvServer.Data\ASIptvServer.Data.csproj" />
     <ProjectReference Include="..\ASIptvServer.M3U\ASIptvServer.M3U.csproj" />
     <ProjectReference Include="..\ASIptvServer.Naming\ASIptvServer.Naming.csproj" />
   </ItemGroup>

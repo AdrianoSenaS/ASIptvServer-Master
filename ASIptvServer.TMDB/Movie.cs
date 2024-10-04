@@ -1,9 +1,9 @@
 ﻿namespace ASIptvServer.TMDB
 {
-    public class Film
+    public class Movie
     {
 
-        public Film() { }
+        public Movie() { }
         public bool Adult { get; set; }
         public string BackdropPath { get; set; }
         public List<int> GenreIds { get; set; }
@@ -19,7 +19,7 @@
         public double VoteAverage { get; set; }
         public int VoteCount { get; set; }
 
-        public Film(bool adult, string backdropPath, List<int> genreIds,
+        public Movie(bool adult, string backdropPath, List<int> genreIds,
             int id, string originalLanguage, string originalTitle, string overview,
             double popularity, string posterPath, string releaseDate, string title,
             bool video, double voteAverage, int voteCount
@@ -45,7 +45,7 @@
         public class ApiResponse
         {
             public int Page { get; set; }
-            public List<Film> Results { get; set; }
+            public List<Movie> Results { get; set; }
             public int TotalPages { get; set; }
             public int TotalResults { get; set; }
         }
