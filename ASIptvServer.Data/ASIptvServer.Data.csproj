@@ -22,8 +22,4 @@
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ASIptvServer.TMDB\ASIptvServer.TMDB.csproj" />
-  </ItemGroup>
-
 </Project>

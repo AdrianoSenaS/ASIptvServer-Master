@@ -5,12 +5,12 @@ namespace ASIptvServer.M3U
     public class M3UList
     {
         
-        public static  List<M3U> M3u(string path)
+        public static  List<M3U> M3u(M3UPath path)
         {
             int Id = 0;
             M3U m3U = null;
             List<M3U> M3uList = new List<M3U>();
-            var readAll = File.ReadLines(path);
+            var readAll = File.ReadLines(path.Path);
 
             foreach (var line in readAll)
             {

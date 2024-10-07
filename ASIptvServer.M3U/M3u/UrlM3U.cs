@@ -1,9 +1,9 @@
 ﻿
 namespace ASIptvServer.M3U.M3u
 {
-    public class M3UDownload
+    public class UrlM3U
     {
-        public static async Task<string> DownloadM3U(string url)
+        public static async Task<string> GetM3Uurl(string url)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -14,7 +14,7 @@ namespace ASIptvServer.M3U.M3u
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Erro ao baixar M3U: {ex.Message}");
+                    
                     return string.Empty;
                 }
             }

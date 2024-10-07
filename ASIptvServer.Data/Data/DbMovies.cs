@@ -1,9 +1,8 @@
-﻿using ASIptvServer.TMDB;
-namespace ASIptvServer.Data.Data
+﻿namespace ASIptvServer.Data.Data
 {
     public  class DbMovies
     {
-        public static void SetMovies(Movie movie)
+        public static void SetMovies()
         {
             
         }
