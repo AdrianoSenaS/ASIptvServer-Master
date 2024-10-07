@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASIptvServer.M3U
+namespace ASIptvServer.Naming
 {
-    public class M3UPath
+    public class NamingPath
     {
-        public  string Path = @"C:\Dados\listaAd.m3u";
+        public  string path {  get; set; }
     }
 }

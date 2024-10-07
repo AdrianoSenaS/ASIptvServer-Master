@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ASIptvServer.TMDB
+﻿namespace ASIptvServer.TMDB
 {
-    public  class GetFilm
+    public  class GetMovies
     {
-        public static List<Film> film= new List<Film>();
+        public static List<Movie> film= new List<Movie>();
         public static ApiHeaders apiHeaders = new ApiHeaders();
-        public static List<Film> GetFilms()
+        public static List<Movie> GetFilms()
         {
             try
             {

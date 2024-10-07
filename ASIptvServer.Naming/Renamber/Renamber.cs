@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+
 
 namespace ASIptvServer.Naming.Renamber
 {
@@ -19,14 +15,14 @@ namespace ASIptvServer.Naming.Renamber
 
         public static Naming naming = new Naming();
 
-        public static Naming SetNaming(string name)
+        public static Naming SetNaming(NamingPath name)
         {
-            EmptyYear = Regex.Replace(name, NamingRegex.YearString, "").Trim();
+            EmptyYear = Regex.Replace(name.path, NamingRegex.YearString, "").Trim();
             EmptyTrace = Regex.Replace(EmptyYear, NamingRegex.RemoveTraces, "").Trim();
             EmptyP = Regex.Replace(EmptyTrace, NamingRegex.RemoveP, "").Trim();
             Name = Regex.Replace(EmptyP, NamingRegex.RemoveS, "").Trim();
-            Year = NamingRegex.YearRegex.Match(name);
-            Serie = NamingRegex.Serie.Match(name);
+            Year = NamingRegex.YearRegex.Match(name.path);
+            Serie = NamingRegex.Serie.Match(name.path);
             if (Serie.Success)
             {
                 IsSerie = true;
