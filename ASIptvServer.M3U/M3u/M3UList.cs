@@ -5,12 +5,12 @@ namespace ASIptvServer.M3U
     public class M3UList
     {
         
-        public static  List<M3U> M3u()
+        public static  List<M3U> M3u(string path)
         {
             int Id = 0;
             M3U m3U = null;
             List<M3U> M3uList = new List<M3U>();
-            var readAll = File.ReadLines(M3UPath.Path);
+            var readAll = File.ReadLines(path);
 
             foreach (var line in readAll)
             {
@@ -35,19 +35,19 @@ namespace ASIptvServer.M3U
                     var matchSeries = AsRegex.FilterSeries.Match(line);
                     if (!matchSeries.Success || !matchFormatVideo.Success)
                     {
-                        m3U.Films = false;
+                        m3U.Movies = false;
                         m3U.Serie = false;
                         m3U.Tv = true;
                     }
                     if (matchSeries.Success && matchFormatVideo.Success)
                     {
-                        m3U.Films = false;
+                        m3U.Movies = false;
                         m3U.Serie = true;
                         m3U.Tv = false;
                     }
                     if (!matchSeries.Success && matchFormatVideo.Success)
                     {
-                        m3U.Films = true;
+                        m3U.Movies = true;
                         m3U.Serie = false;
                         m3U.Tv = false;
                     }

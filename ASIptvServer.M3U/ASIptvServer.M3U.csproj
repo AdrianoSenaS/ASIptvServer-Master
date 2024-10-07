@@ -4,6 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Adriano Sena</Authors>
+    <PackageReadmeFile>readname.md</PackageReadmeFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>ASIptvServer.M3U uma biblioteca C# que fornece funcionalidades para ler listas m3u .</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,6 +21,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ASIptvServer.Naming\ASIptvServer.Naming.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="readname.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

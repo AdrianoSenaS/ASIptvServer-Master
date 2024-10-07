@@ -8,7 +8,7 @@
         public string Logo { get; set; }
         public string Categories { get; set; }
         public string Url   { get; set; }
-        public bool Films { get; set; }
+        public bool Movies { get; set; }
         public bool Serie { get; set; }
         public bool Tv { get; set; }
         public M3U(int id, string name, string logo, string categories, string url, bool film, bool serie, bool tv) 
@@ -18,7 +18,7 @@
             this.Logo = logo;
             this.Categories = categories;
             this.Url = url;
-            this.Films = film;
+            this.Movies = film;
             this.Serie = serie;
             this.Tv = tv;
         }

@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace ASIptvServer.IO.FilesServer
+﻿namespace ASIptvServer.IO.FilesServer
 {
     public class Folder
     {
