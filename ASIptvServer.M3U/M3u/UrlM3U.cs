@@ -14,7 +14,7 @@ namespace ASIptvServer.M3U.M3u
                 }
                 catch (Exception ex)
                 {
-                    
+
                     return string.Empty;
                 }
             }

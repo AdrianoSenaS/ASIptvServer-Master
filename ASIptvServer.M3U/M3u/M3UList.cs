@@ -4,8 +4,8 @@ namespace ASIptvServer.M3U
 {
     public class M3UList
     {
-        
-        public static  List<M3U> M3u(M3UPath path)
+
+        public static List<M3U> M3u(M3UPath path)
         {
             int Id = 0;
             M3U m3U = null;
@@ -14,7 +14,7 @@ namespace ASIptvServer.M3U
 
             foreach (var line in readAll)
             {
-               
+
                 if (line.StartsWith("#EXTINF"))
                 {
                     m3U = new M3U();
@@ -23,7 +23,7 @@ namespace ASIptvServer.M3U
                     if (match.Success)
                     {
                         Id++;
-                        m3U.Id =Id;
+                        m3U.Id = Id;
                         m3U.Name = match.Groups[5].Value;
                         m3U.Logo = match.Groups[3].Value;
                         m3U.Categories = match.Groups[4].Value;
@@ -55,7 +55,7 @@ namespace ASIptvServer.M3U
                     M3uList.Add(m3U);
                 }
             }
-            return  M3uList;
+            return M3uList;
         }
     }
 }

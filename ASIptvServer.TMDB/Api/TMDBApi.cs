@@ -6,7 +6,7 @@ namespace ASIptvServer.TMDB.Api
         public static ApiRest api = new ApiRest();
         public static ApiRest Api(ApiHeaders headers)
         {
-            var options = new RestClientOptions(headers.Options); 
+            var options = new RestClientOptions(headers.Options);
             var client = new RestClient(options);
             var request = new RestRequest("");
             request.AddHeader("Accept", headers.HeaderContentType);

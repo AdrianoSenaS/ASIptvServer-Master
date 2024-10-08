@@ -6,9 +6,9 @@
 
         public string Name { get; set; }
         public string Lang { get; set; }
-        public string Year  { get; set; }
+        public string Year { get; set; }
         public bool IsSerie { get; set; }
-        public Naming(string name, string lag, string year, bool isSerie) 
+        public Naming(string name, string lag, string year, bool isSerie)
         {
             this.Name = name;
             this.Lang = lag;
