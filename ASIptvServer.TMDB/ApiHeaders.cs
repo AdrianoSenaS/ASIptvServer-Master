@@ -1,6 +1,6 @@
 ﻿namespace ASIptvServer.TMDB
 {
-    public  class ApiHeaders
+    public class ApiHeaders
     {
         public string Options { get; set; }
         public string HeaderContentType { get; set; }

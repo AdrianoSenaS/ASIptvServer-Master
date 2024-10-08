@@ -10,9 +10,10 @@
                 {
                     Directory.CreateDirectory(path.Local);
                 }
-            }catch (Exception)
+            }
+            catch (Exception)
             {
             }
-        } 
+        }
     }
 }

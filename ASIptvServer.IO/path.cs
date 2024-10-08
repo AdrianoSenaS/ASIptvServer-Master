@@ -3,8 +3,8 @@
     public class path
     {
         public path() { }
-        public string Local {  get; set; }
-        public path( string local) 
+        public string Local { get; set; }
+        public path(string local)
         {
             this.Local = local;
         }
