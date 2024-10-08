@@ -26,7 +26,6 @@ namespace ASIptvServer.Api.Models
                 if (!item.Tv && !item.Serie)
                 {
                     DbMovies.SetMovies(result.Name, item.Logo, item.Categories, string.Empty, item.Url, result.Year);
-                    Console.WriteLine("Adicionando: "+result.Name);
                 }
             }
         }

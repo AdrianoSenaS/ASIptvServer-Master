@@ -2,6 +2,11 @@
 {
     public class M3UPath
     {
-        public string Path = @"C:\Dados\listaAd.m3u";
+        public M3UPath() { }
+        public string Path { get; set; }
+        public M3UPath(string path)
+        {
+            this.Path = path;
+        }
     }
 }

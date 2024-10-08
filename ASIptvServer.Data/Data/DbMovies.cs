@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 
 namespace ASIptvServer.Data.Data
 {
@@ -8,7 +9,6 @@ namespace ASIptvServer.Data.Data
         public static List<MovieModel> GetMovies()
         {
             List<MovieModel> movies = new List<MovieModel>();
-
             using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
             {
                 connection.Open();
@@ -54,31 +54,29 @@ namespace ASIptvServer.Data.Data
             using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
             {
                 connection.Open();
-                string sql = "SELECT * FROM MOVIES WHERE URL='"+url+"'";
+                string sql = "SELECT COUNT(1) FROM MOVIES WHERE URL = @URL";
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    command.Parameters.AddWithValue("@URL", url);
+                    var count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count == 0)
                     {
-                        while (reader.Read())
+                        var sql1 = "INSERT INTO MOVIES (TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE)VALUES(@TITLE, @LOGO, @CATEGORIES, @OVERVIEW, @URL, @DATE)";
+                        using (SQLiteCommand command1 = new SQLiteCommand(sql1, connection))
                         {
-                            
-                            if (url != reader["URL"].ToString() || reader["URL"].ToString() == null)
-                            {
-                               var sql1 = "INSERT INTO MOVIES (TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE)VALUES(@TITLE, @LOGO, @CATEGORIES, @OVERVIEW, @URL, @DATE)";
-                                SQLiteCommand command1 = new SQLiteCommand(sql1, connection);
-                                command1.Parameters.AddWithValue("@TITLE", Title);
-                                command1.Parameters.AddWithValue("@LOGO", Logo);
-                                command1.Parameters.AddWithValue("@CATEGORIES", Categories);
-                                command1.Parameters.AddWithValue("OVERVIEW", Overview);
-                                command1.Parameters.AddWithValue("@URL", url);
-                                command1.Parameters.AddWithValue("@DATE", date);
-                                command1.ExecuteNonQuery();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Já adicionado");
-                            }
+                            command1.Parameters.AddWithValue("@TITLE", Title);
+                            command1.Parameters.AddWithValue("@LOGO", Logo);
+                            command1.Parameters.AddWithValue("@CATEGORIES", Categories);
+                            command1.Parameters.AddWithValue("OVERVIEW", Overview);
+                            command1.Parameters.AddWithValue("@URL", url);
+                            command1.Parameters.AddWithValue("@DATE", date);
+                            command1.ExecuteNonQuery();
+                            Console.WriteLine("Adicionando:" + Title);
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Já adicionado:" + Title);
                     }
                 }
                 connection.Close();
