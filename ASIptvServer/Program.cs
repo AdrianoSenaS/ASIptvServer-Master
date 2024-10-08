@@ -1,5 +1,9 @@
+using ASIptvServer;
 using ASIptvServer.Api;
 using ASIptvServer.Data;
+
+Startup.Start();
+
 
 var builder = WebApplication.CreateBuilder(args);
 
