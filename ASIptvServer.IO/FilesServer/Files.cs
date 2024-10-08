@@ -12,5 +12,17 @@
             {
             }
         }
+
+        public static void DeleteFile(path path)
+        {
+            try
+            {
+                File.Delete(path.Local);
+            }
+            catch (Exception) 
+            {
+                throw;
+            }
+        }
     }
 }

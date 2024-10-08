@@ -28,6 +28,7 @@ namespace ASIptvServer.Api.Models
                     DbMovies.SetMovies(result.Name, item.Logo, item.Categories, string.Empty, item.Url, result.Year);
                 }
             }
+            Files.DeleteFile(path);
         }
     }
 }

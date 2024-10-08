@@ -10,7 +10,7 @@ namespace ASIptvServer.Api.Controllers
     {
         // POST api/<ValuesController>
         [HttpPost]
-        public async void Post( string url)
+        public void Post(string url)
         {
 
             M3uUrlModel.UpdateM3u(url);
