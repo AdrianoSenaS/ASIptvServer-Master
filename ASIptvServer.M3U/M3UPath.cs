@@ -4,9 +4,11 @@
     {
         public M3UPath() { }
         public string Path { get; set; }
+       
         public M3UPath(string path)
         {
             this.Path = path;
+            
         }
     }
 }

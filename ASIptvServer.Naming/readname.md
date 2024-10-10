@@ -21,14 +21,16 @@
 ## Exemplo de Código
 
 ```
-using Naming;
+using ASIptvServer.Naming.Renamber;
+using ASIptvServer.Naming;
 
 class Program
 {
     static void Main(string[] args)
     {
-        var originalString = "ex - 2019 (2019) S00 E03";
-        var renamedString = Renamber.SetNaming(originalString);
+        string nameString = "ex - 2019 (2019) S00 E03";
+        NamingPath namingPath = new NamingPath(nameString);
+        var renamedString = Renamber.SetNaming(namingPath);
         Console.WriteLine(renamedString.Name);  // Saída: "ex"
         Console.WriteLine(renamedString.Year);  // Saída: "2019"
         Console.WriteLine(renamedString.IsSerie);  // Saída: "true"

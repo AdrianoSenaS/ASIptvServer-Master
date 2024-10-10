@@ -1,4 +1,5 @@
-﻿using ASIptvServer.Models;
+﻿using ASIptvServer.Data;
+using ASIptvServer.Models;
 
 namespace ASIptvServer
 {
@@ -6,8 +7,10 @@ namespace ASIptvServer
     {
         public static void Start()
         {
-            IOpath.CreatePath();
             
+            IOpath.CreatePath();
+            DbData.CreateDatabase();
+
         }
     }
 }

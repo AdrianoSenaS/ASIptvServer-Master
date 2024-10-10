@@ -1,4 +1,4 @@
-﻿    # ASIptvServer.M3U
+﻿# ASIptvServer.M3U
 
 ###### ASIptvServer.M3U uma biblioteca C# que fornece funcionalidades para ler listas m3u .
 
@@ -10,7 +10,7 @@
 
 
 
-## Exemplo de Código
+## Exemplo de Código com arquivos m3u
 
 ```
 using ASIptvServer.M3U;
@@ -19,15 +19,47 @@ class Program
 {
     static void Main(string[] args)
     {
-        var url = "http://url";
-        var m3u = M3UList.M3u(url);
-        Console.WriteLine(m3u.Id);  // Saída: "01"
-        Console.WriteLine(m3u.Name);  // Saída: "ex!"
-        Console.WriteLine(m3u.Logo);  // Saída: "http://urlLogo"
-        Console.WriteLine(m3u.Categories);  // Saída: "Movies | action"
-        Console.WriteLine(m3u.Movies);  // Saída: "true"
-        Console.WriteLine(m3u.Series);  // Saída: "false"
-        Console.WriteLine(m3u.Tv);  // Saída: "false"
+        var pathM3u = @"C:\list.m3u";
+        M3UPath m3UPath = new M3UPath(pathM3u);
+        var dt = M3UList.M3uPath(m3UPath);
+        foreach (var item in dt)
+        {
+            Console.WriteLine(item.Id);  // Saída: "01"
+            Console.WriteLine(item.Name);  // Saída: "ex!"
+            Console.WriteLine(item.Logo);  // Saída: "http://urlLogo"
+            Console.WriteLine(item.Categories);  // Saída: "Movies | action"
+            Console.WriteLine(item.Movies);  // Saída: "true"
+            Console.WriteLine(item.Series);  // Saída: "false"
+            Console.WriteLine(item.Tv);  // Saída: "false"
+            Console.WriteLine(item.Radio);  // Saída: "false"
+        }  
+    }
+}
+
+```
+## Exemplo de Código com url m3u
+
+```
+using ASIptvServer.M3U;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var urlM3u = @"http://url.m3u";
+        M3Uurl m3uUrl = new M3Uurl(urlM3u);
+        var dt = M3UList.M3Uurl(m3uUrl);
+        foreach (var item in dt.Result)
+        {
+            Console.WriteLine(item.Id);  // Saída: "01"
+            Console.WriteLine(item.Name);  // Saída: "ex!"
+            Console.WriteLine(item.Logo);  // Saída: "http://urlLogo"
+            Console.WriteLine(item.Categories);  // Saída: "Movies | action"
+            Console.WriteLine(item.Movies);  // Saída: "true"
+            Console.WriteLine(item.Series);  // Saída: "false"
+            Console.WriteLine(item.Tv);  // Saída: "false"
+            Console.WriteLine(item.Radio);  // Saída: "false"
+        }
         
     }
 }

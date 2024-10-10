@@ -9,7 +9,7 @@
     <PackageReadmeFile>readname.md</PackageReadmeFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>ASIptvServer.M3U uma biblioteca C# que fornece funcionalidades para ler listas m3u .</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
