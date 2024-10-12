@@ -16,12 +16,8 @@ namespace ASIptvServer.Api.Models
         {
             M3UPath m3UPath = new M3UPath(pathM3u);
             var dt = M3UList.M3uPath(m3UPath);
-            foreach (var item in dt)
+            foreach (var item in dt.Result)
             {
-                Console.WriteLine("Nome: " + item.Name);
-                Console.WriteLine("Logo: " + item.Logo);
-                Console.WriteLine("Categoria: " + item.Categories);
-                Console.WriteLine("Url: " + item.Url);
                 try
                 {
                     NamingPath namingPath = new NamingPath(item.Name);
@@ -29,7 +25,7 @@ namespace ASIptvServer.Api.Models
                     if (!item.Tv && !item.Serie && !item.Radio)
                     {
                         MovieModel movie = new MovieModel();
-                        CategoryMovieModel category = new CategoryMovieModel();
+                        Categories category = new Categories();
                         movie.Id = item.Id;
                         movie.Title = result.Name;
                         movie.Logo = item.Logo;
@@ -48,7 +44,7 @@ namespace ASIptvServer.Api.Models
                     if (!item.Tv && !item.Serie && !item.Radio)
                     {
                         MovieModel movie = new MovieModel();
-                        CategoryMovieModel category = new CategoryMovieModel();
+                        Categories category = new Categories();
                         movie.Id = item.Id;
                         movie.Title = item.Name;
                         movie.Logo = item.Logo;
@@ -70,10 +66,6 @@ namespace ASIptvServer.Api.Models
             var dt =  M3UList.M3Uurl(m3Uurl);
             foreach (var item in dt.Result)
             {
-                Console.WriteLine("Nome: " + item.Name);
-                Console.WriteLine("Logo: " + item.Logo);
-                Console.WriteLine("Categoria: " + item.Categories);
-                Console.WriteLine("Url: " + item.Url);
                 try
                 {
                     NamingPath namingPath = new NamingPath(item.Name);
@@ -81,7 +73,7 @@ namespace ASIptvServer.Api.Models
                     if (!item.Tv && !item.Serie && !item.Radio)
                     {
                         MovieModel movie = new MovieModel();
-                        CategoryMovieModel category = new CategoryMovieModel();
+                        Categories category = new Categories();
                         movie.Id = item.Id;
                         movie.Title = result.Name;
                         movie.Logo = item.Logo;
@@ -100,7 +92,7 @@ namespace ASIptvServer.Api.Models
                     if (!item.Tv && !item.Serie && !item.Radio)
                     {
                         MovieModel movie = new MovieModel();
-                        CategoryMovieModel category = new CategoryMovieModel();
+                        Categories category = new Categories();
                         movie.Id = item.Id;
                         movie.Title = item.Name;
                         movie.Logo = item.Logo;

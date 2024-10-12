@@ -82,7 +82,7 @@ namespace ASIptvServer.Data.Data
                         {
                             command1.Parameters.AddWithValue("@TITLE", movie.Title);
                             command1.Parameters.AddWithValue("@LOGO", movie.Logo);
-                            command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
+                            command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories.Replace("/", ""));
                             command1.Parameters.AddWithValue("OVERVIEW", movie.Overview);
                             command1.Parameters.AddWithValue("@URL", movie.Url);
                             command1.Parameters.AddWithValue("@DATE", movie.Date);
@@ -94,23 +94,24 @@ namespace ASIptvServer.Data.Data
             }
         }
         
-        public static List<CategoryMovieModel> GetCategoryMovies()
+        public static List<Categories> GetCategoryMovies()
         {
-            List<CategoryMovieModel> categories = new List<CategoryMovieModel>();
+            List<Categories> categories = new List<Categories>();
             using(SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
             {
                 connection.Open();
-                string sql = "SELECT * FROM CATEGORIESMOVIES";
+                string sql = "SELECT * FROM CATEGORIES";
                 using(SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            categories.Add(new CategoryMovieModel()
+                            categories.Add(new Categories()
                             {
                                 Id = reader.GetInt32(0),
-                                Category = reader.GetString(1)
+                                Category = reader.GetString(1),
+                                SubCatagory = reader.GetString(2),
                             });
                         }
                     }
@@ -119,51 +120,57 @@ namespace ASIptvServer.Data.Data
             }
             return categories;
         }
-        public static List<CategoryMovieModel> GetCategoryMoviesId(int id)
+        public static List<MovieModel> GetCategoryMoviesId(string category)
         {
-            List<CategoryMovieModel> categories = new List<CategoryMovieModel>();
+            List<MovieModel> movies = new List<MovieModel>();
             using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
             {
                 connection.Open();
-                string sql = "SELECT * FROM CATEGORIESMOVIES WHERE ID=@ID";
+                string sql = "SELECT * FROM MOVIES WHERE CATEGORIES = @CATEGORIES ";
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@ID", id);
+                    command.Parameters.AddWithValue("@CATEGORIES", category);
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            categories.Add(new CategoryMovieModel()
+                            movies.Add(new MovieModel()
                             {
                                 Id = reader.GetInt32(0),
-                                Category = reader.GetString(1)
+                                Title = reader.GetString(1),
+                                Logo = reader.GetString(2),
+                                Categories = reader.GetString(3),
+                                Overview = reader.GetString(4),
+                                Url = reader.GetString(5),
+                                Date = reader.GetString(6)
                             });
                         }
                     }
                 }
                 connection.Close();
             }
-            return categories;
+            return movies;
         }
-        public static void SetCategoryMovies(CategoryMovieModel category)
+        public static void SetCategoryMovies(Categories category)
         {
-            string sqls = "SELECT COUNT(1) FROM CATEGORIESMOVIES WHERE CATEGORY = @CATEGORY";
+            string sqls = "SELECT COUNT(1) FROM CATEGORIES WHERE CATEGORY = @CATEGORY";
             using (SQLiteConnection connections = new SQLiteConnection(DbPath.Local))
             {
                 connections.Open();
                 using (SQLiteCommand commands = new SQLiteCommand(sqls, connections))
                 {
-                    commands.Parameters.AddWithValue("@CATEGORY", category.Category);
+                    commands.Parameters.AddWithValue("@CATEGORY", category.Category.Replace("/", " "));
                     var count = Convert.ToInt32(commands.ExecuteScalar());
                     if (count == 0) 
                     {
-                        string sql = "INSERT INTO CATEGORIESMOVIES (CATEGORY) VALUES(@CATEGORY)";
+                        string sql = "INSERT INTO CATEGORIES (CATEGORY, SUBCATEGORY) VALUES(@CATEGORY, @SUBCATEGORY)";
                         using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                         {
                             connection.Open();
                             using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                             {
-                                command.Parameters.AddWithValue("@CATEGORY", category.Category);
+                                command.Parameters.AddWithValue("@CATEGORY", category.Category.Replace("/", " "));
+                                command.Parameters.AddWithValue("@SUBCATEGORY", "Movies");
                                 command.ExecuteNonQuery();
                             }
                             connection.Close();

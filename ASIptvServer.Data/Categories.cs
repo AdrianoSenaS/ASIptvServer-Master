@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace ASIptvServer.Data
 {
-   public class CategoryMovieModel
+   public class Categories
     {
-        public CategoryMovieModel() { }
+        public Categories() { }
         public int Id { get; set; }
         public string Category { get; set; }
-        public CategoryMovieModel(int id, string category)
+        public string SubCatagory { get; set; }
+        public Categories(int id, string category, string subCatagory)
         {
             this.Id = id;
             this.Category = category;
+            SubCatagory = subCatagory;
         }
     }
 }

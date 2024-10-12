@@ -9,11 +9,11 @@ namespace ASIptvServer.M3U
     public class M3UList
     {
 
-        public static List<M3U> M3uPath(M3UPath path)
+        public static async Task<List<M3U>> M3uPath(M3UPath path)
         {
             List<M3U> M3uList = new List<M3U>();
             var readAll = File.ReadAllLines(path.Path);
-            M3uList = GetM3Us(readAll);
+            M3uList = await GetM3Us(readAll);
             return M3uList;
         }
         public static async Task<List<M3U>> M3Uurl(M3Uurl url)
@@ -24,7 +24,7 @@ namespace ASIptvServer.M3U
                 using HttpClient client = new HttpClient();
                 string content = await client.GetStringAsync(url.Url);
                 string[] lines = content.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
-                m3Us = GetM3Us(lines);
+                m3Us = await GetM3Us(lines);
             }
             catch (Exception)
             {
@@ -33,7 +33,7 @@ namespace ASIptvServer.M3U
             return m3Us;
         }
 
-        private static List<M3U> GetM3Us(string[] lines)
+        private static async Task<List<M3U>> GetM3Us(string[] lines)
         {
             List<M3U> m3Us = new List<M3U>();
             try

@@ -24,7 +24,7 @@ if (!app.Environment.IsDevelopment())
 // Configurar o middleware do Swagger
 app.UseSwaggerConfiguration();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseCors();
 
@@ -33,4 +33,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+app.Run("http://*:8080");
