@@ -14,6 +14,7 @@
     <Description>ASIptvServer.Namingé uma biblioteca C# que fornece funcionalidades para renomear strings no formato "ex - 2019 (2019) S001 E003", resultando em strings formatadas como "ex ano 2019 ". A biblioteca captura o ano de uma string, remove parênteses e traços, e organiza o texto de maneira clara</Description>
     <Authors>Adriano Sena</Authors>
     <Company>ASIptvServer</Company>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="C:\Users\Adriano\Downloads\readname.md">
+    <None Update="readname.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

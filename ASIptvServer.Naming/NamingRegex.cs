@@ -7,10 +7,8 @@ namespace ASIptvServer.Naming
     {
         public NamingRegex() { }
 
-        public static string YearString = @"\b\d{4}\b";
-        public static Regex YearRegex = new Regex(@"\b\d{4}\b");
-        public static string RemoveTraces = @"\s*-\s*";
-        public static string RemoveP = @"\(\s*\)";
+        public static string YearString = @"[-\s()]*\d{4}[-\s()]*";
+        public static Regex YearRegex = new Regex(@"\d{4}$");
         public static string RemoveS = @"S\d{2} E\d{2}";
         public static Regex Serie = new Regex(@"S\d{2} E\d{2}");
 

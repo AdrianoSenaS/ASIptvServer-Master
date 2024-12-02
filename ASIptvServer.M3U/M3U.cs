@@ -11,7 +11,8 @@
         public bool Movies { get; set; }
         public bool Serie { get; set; }
         public bool Tv { get; set; }
-        public M3U(int id, string name, string logo, string categories, string url, bool film, bool serie, bool tv)
+        public bool Radio { get; set; }
+        public M3U(int id, string name, string logo, string categories, string url, bool film, bool serie, bool tv, bool radio)
         {
             this.Id = id;
             this.Name = name;
@@ -21,6 +22,7 @@
             this.Movies = film;
             this.Serie = serie;
             this.Tv = tv;
+            Radio = radio;
         }
 
     }

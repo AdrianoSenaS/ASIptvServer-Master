@@ -21,7 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\ASIptvServer.Data\ASIptvServer.Data.csproj" />
+    <ProjectReference Include="..\ASIptvServer.IO\ASIptvServer.IO.csproj" />
+    <ProjectReference Include="..\ASIptvServer.M3U\ASIptvServer.M3U.csproj" />
+    <ProjectReference Include="..\ASIptvServer.Naming\ASIptvServer.Naming.csproj" />
+    <ProjectReference Include="..\ASIptvServer.TMDB\ASIptvServer.TMDB.csproj" />
   </ItemGroup>
 
 </Project>
