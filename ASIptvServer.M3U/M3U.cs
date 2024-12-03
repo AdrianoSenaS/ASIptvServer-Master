@@ -12,7 +12,14 @@
         public bool Serie { get; set; }
         public bool Tv { get; set; }
         public bool Radio { get; set; }
-        public M3U(int id, string name, string logo, string categories, string url, bool film, bool serie, bool tv, bool radio)
+        public M3U(int id, string name, 
+            string logo, 
+            string categories, 
+            string url, 
+            bool film, 
+            bool serie, 
+            bool tv, 
+            bool radio)
         {
             this.Id = id;
             this.Name = name;

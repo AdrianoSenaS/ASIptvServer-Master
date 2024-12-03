@@ -2,7 +2,6 @@
 {
     public class Movie
     {
-
         public Movie() { }
         public bool Adult { get; set; }
         public string BackdropPath { get; set; }
@@ -19,10 +18,20 @@
         public double VoteAverage { get; set; }
         public int VoteCount { get; set; }
 
-        public Movie(bool adult, string backdropPath, List<int> genreIds,
-            int id, string originalLanguage, string originalTitle, string overview,
-            double popularity, string posterPath, string releaseDate, string title,
-            bool video, double voteAverage, int voteCount
+        public Movie(bool adult, 
+            string backdropPath, 
+            List<int> genreIds,
+            int id, 
+            string originalLanguage, 
+            string originalTitle, 
+            string overview,
+            double popularity, 
+            string posterPath, 
+            string releaseDate, 
+            string title,
+            bool video, 
+            double voteAverage, 
+            int voteCount
             )
         {
             this.Adult = adult;

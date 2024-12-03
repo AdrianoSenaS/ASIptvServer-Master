@@ -10,7 +10,13 @@
         public string Overview { get; set; }
         public string Url { get; set; }
         public string Date { get; set; }
-        public MovieModel(int id, string title, string logo, string categories, string overview, string url, string date)
+        public MovieModel(int id, 
+            string title, 
+            string logo, 
+            string categories, 
+            string overview, 
+            string url, 
+            string date)
         {
             this.Id = id;
             this.Title = title;
@@ -20,7 +26,5 @@
             this.Url = url;
             this.Date = date;
         }
-
-
     }
 }

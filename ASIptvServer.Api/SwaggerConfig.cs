@@ -24,7 +24,6 @@ namespace ASIptvServer.Api
                 // Outras configurações, como segurança, esquemas de autenticação, etc.
             });
         }
-
         public static void UseSwaggerConfiguration(this IApplicationBuilder app)
         {
             // Configuração do middleware do Swagger

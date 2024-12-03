@@ -97,7 +97,7 @@ namespace ASIptvServer.Data.Data
                             {
                                 command1.Parameters.AddWithValue("@TITLE", movie.Title);
                                 command1.Parameters.AddWithValue("@LOGO", movie.Logo);
-                                command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories.Replace("/", " "));
+                                command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
                                 command1.Parameters.AddWithValue("OVERVIEW", movie.Overview);
                                 command1.Parameters.AddWithValue("@URL", movie.Url);
                                 command1.Parameters.AddWithValue("@DATE", movie.Date);
@@ -112,7 +112,6 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        
         public static List<Categories> GetCategoryMovies()
         {
             try
@@ -192,7 +191,7 @@ namespace ASIptvServer.Data.Data
                     connections.Open();
                     using (SQLiteCommand commands = new SQLiteCommand(sqls, connections))
                     {
-                        commands.Parameters.AddWithValue("@CATEGORY", category.Category.Replace("/", " "));
+                        commands.Parameters.AddWithValue("@CATEGORY", category.Category);
                         var count = Convert.ToInt32(commands.ExecuteScalar());
                         if (count == 0)
                         {
@@ -202,7 +201,7 @@ namespace ASIptvServer.Data.Data
                                 connection.Open();
                                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                                 {
-                                    command.Parameters.AddWithValue("@CATEGORY", category.Category.Replace("/", " "));
+                                    command.Parameters.AddWithValue("@CATEGORY", category.Category);
                                     command.Parameters.AddWithValue("@SUBCATEGORY", "Movies");
                                     command.ExecuteNonQuery();
                                 }

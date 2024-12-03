@@ -36,7 +36,12 @@ namespace ASIptvServer.Api.Models
                         DbMovies.SetMovies(movie);
                         category.Category = item.Categories;
                         DbMovies.SetCategoryMovies(category);
+                       
 
+                    }
+                    if (item.Tv)
+                    {
+                        Console.WriteLine("Resultado: " + item.Name);
                     }
                 }
                 catch (Exception)
@@ -54,8 +59,13 @@ namespace ASIptvServer.Api.Models
                         movie.Date = string.Empty;
                         DbMovies.SetMovies(movie);
                         category.Category = item.Categories;
-                        DbMovies.SetCategoryMovies(category);
+                        DbMovies.SetCategoryMovies(category); 
+                       // Console.WriteLine("Resultado: " + item.Name);
 
+                    }
+                    if (item.Tv)
+                    {
+                        Console.WriteLine("Resultado: " + item.Name);
                     }
                 }
             }
@@ -84,7 +94,12 @@ namespace ASIptvServer.Api.Models
                         DbMovies.SetMovies(movie);
                         category.Category = item.Categories;
                         DbMovies.SetCategoryMovies(category);
+                        //Console.WriteLine("Resultado: " + item.Name);
 
+                    }
+                    if (item.Tv)
+                    {
+                        Console.WriteLine("Resultado: " + item.Name);
                     }
                 }
                 catch (Exception)
@@ -103,10 +118,13 @@ namespace ASIptvServer.Api.Models
                         DbMovies.SetMovies(movie);
                         category.Category = item.Categories;
                         DbMovies.SetCategoryMovies(category);
-
+                        //Console.WriteLine("Resultado: " + item.Name);
+                    }
+                    if (item.Tv)
+                    {
+                        Console.WriteLine("Resultado: " + item.Name);
                     }
                 }
-                
             }
         }
     }

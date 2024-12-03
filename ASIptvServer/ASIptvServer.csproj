@@ -15,6 +15,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ASIptvServer.Api\ASIptvServer.Api.csproj" />
     <ProjectReference Include="..\ASIptvServer.Data\ASIptvServer.Data.csproj" />
     <ProjectReference Include="..\ASIptvServer.IO\ASIptvServer.IO.csproj" />

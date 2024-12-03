@@ -12,7 +12,9 @@ namespace ASIptvServer.Data
         public int Id { get; set; }
         public string Category { get; set; }
         public string SubCatagory { get; set; }
-        public Categories(int id, string category, string subCatagory)
+        public Categories(int id, 
+            string category, 
+            string subCatagory)
         {
             this.Id = id;
             this.Category = category;

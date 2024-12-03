@@ -32,7 +32,6 @@ namespace ASIptvServer.M3U
             }
             return m3Us;
         }
-
         private static async Task<List<M3U>> GetM3Us(string[] lines)
         {
             List<M3U> m3Us = new List<M3U>();
