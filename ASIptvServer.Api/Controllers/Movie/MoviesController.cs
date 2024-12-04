@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ASIptvServer.Data.Data;
 using ASIptvServer.Data;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ASIptvServer.Api.Controllers.Movie
 {

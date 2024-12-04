@@ -120,7 +120,7 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                 {
                     connection.Open();
-                    string sql = "SELECT * FROM CATEGORIES";
+                    string sql = "SELECT * FROM CATEGORIES WHERE SUBCATEGORY = 'Movies'";
                     using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                     {
                         using (SQLiteDataReader reader = command.ExecuteReader())

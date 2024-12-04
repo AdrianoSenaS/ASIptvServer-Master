@@ -11,7 +11,6 @@ namespace ASIptvServer.Api.Models
     public class M3uUrlModel
     {
         public static string pathM3u = @"C:\temp\ASIptvServer\lista.m3u";
-
         public static void UpdateM3uPath()
         {
             M3UPath m3UPath = new M3UPath(pathM3u);
@@ -41,7 +40,24 @@ namespace ASIptvServer.Api.Models
                     }
                     if (item.Tv)
                     {
-                        Console.WriteLine("Resultado: " + item.Name);
+                        try
+                        {
+                            TvModel tv = new TvModel();
+                            Categories categories = new Categories();
+                            tv.Id = item.Id;
+                            tv.Title = item.Name;
+                            tv.Logo = item.Logo;
+                            tv.Categories = item.Categories;
+                            tv.Url = item.Url;
+                            DbTV.SetTv(tv);
+                            categories.Category = item.Categories;
+                            DbTV.SetCategoryTv(categories);
+                            Console.WriteLine("Resultado: " + item.Name);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
                 catch (Exception)
@@ -65,7 +81,24 @@ namespace ASIptvServer.Api.Models
                     }
                     if (item.Tv)
                     {
-                        Console.WriteLine("Resultado: " + item.Name);
+                        try
+                        {
+                            TvModel tv = new TvModel();
+                            Categories categories = new Categories();
+                            tv.Id = item.Id;
+                            tv.Title = item.Name;
+                            tv.Logo = item.Logo;
+                            tv.Categories = item.Categories;
+                            tv.Url = item.Url;
+                            DbTV.SetTv(tv);
+                            categories.Category = item.Categories;
+                            DbTV.SetCategoryTv(categories);
+                            Console.WriteLine("Resultado: " + item.Name);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
             }
@@ -99,7 +132,24 @@ namespace ASIptvServer.Api.Models
                     }
                     if (item.Tv)
                     {
-                        Console.WriteLine("Resultado: " + item.Name);
+                        try
+                        {
+                            TvModel tv = new TvModel();
+                            Categories categories = new Categories();
+                            tv.Id = item.Id;
+                            tv.Title = item.Name;
+                            tv.Logo = item.Logo;
+                            tv.Categories = item.Categories;
+                            tv.Url = item.Url;
+                            DbTV.SetTv(tv);
+                            categories.Category = item.Categories;
+                            DbTV.SetCategoryTv(categories);
+                            Console.WriteLine("Resultado: " + item.Name);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
                 catch (Exception)
@@ -122,7 +172,24 @@ namespace ASIptvServer.Api.Models
                     }
                     if (item.Tv)
                     {
-                        Console.WriteLine("Resultado: " + item.Name);
+                        try
+                        {
+                            TvModel tv = new TvModel();
+                            Categories categories = new Categories();
+                            tv.Id = item.Id;
+                            tv.Title = item.Name;
+                            tv.Logo = item.Logo;
+                            tv.Categories = item.Categories;
+                            tv.Url = item.Url;
+                            DbTV.SetTv(tv);
+                            categories.Category = item.Categories;
+                            DbTV.SetCategoryTv(categories);
+                            Console.WriteLine("Resultado: " + item.Name);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     }
                 }
             }
