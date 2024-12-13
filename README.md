@@ -26,13 +26,7 @@ ASIptvServer é um media server IPTV escrito em C# que fornece uma solução rob
    cd ASIptvServer-Master
    ```
 
-2. Execute o script de instalação:
-   ```bash
-   chmod +x install.sh
-   ./install.sh
-   ```
-
-3. Inicie o servidor:
+2. Inicie o servidor:
    ```bash
    dotnet run --project ASIptvServer
    ```
