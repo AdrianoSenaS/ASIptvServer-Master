@@ -24,8 +24,8 @@ chmod 755 "$APP_DIR" "$DATA_DIR" "$CACHE_DIR"
 
 # Copiar arquivos da aplicação para o diretório de instalação
 echo "Copiando arquivos da aplicação..."
-cp -r ./ASIptvServer-Master/* "$APP_DIR/"
-chmod +x "$APP_DIR/ASIptvServer" # Tornar o binário executável
+cp -r ./* "$APP_DIR/"
+chmod +x "$APP_DIR/" # Tornar o binário executável
 
 # Configurar o serviço systemd (se necessário)
 if [ ! -f "$SERVICE_FILE" ]; then
