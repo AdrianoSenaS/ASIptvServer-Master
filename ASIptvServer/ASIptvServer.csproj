@@ -30,4 +30,8 @@
     <ProjectReference Include="..\ASIptvServer.IO\ASIptvServer.IO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

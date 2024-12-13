@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ASIptvServer.Data
 {
     public class TvModel
@@ -20,11 +15,11 @@ namespace ASIptvServer.Data
             categories, 
             string url) 
         {
-            Id = id;
-            Title = title;
-            Logo = logo;
-            Categories = categories;
-            Url = url;
+            this.Id = id;
+            this.Title = title;
+            this.Logo = logo;
+            this.Categories = categories;
+            this.Url = url;
         }
     }
 }

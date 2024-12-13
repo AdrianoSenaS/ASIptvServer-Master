@@ -1,14 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Reflection.Metadata;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
+﻿using System.Text.RegularExpressions;
+
 
 namespace ASIptvServer.M3U
 {
     public class M3UList
     {
-
         public static async Task<List<M3U>> M3uPath(M3UPath path)
         {
             List<M3U> M3uList = new List<M3U>();
@@ -74,8 +70,6 @@ namespace ASIptvServer.M3U
                             m3U.Id = Id;
                             m3U.Name = match1.Groups[1].Value.Trim();
                             m3U.Url = streamUrl;
-                            //Console.WriteLine(m3U.Name);
-                            //Console.WriteLine(m3U.Url);
                         }
                         if (match3.Success)
                         {
@@ -83,9 +77,6 @@ namespace ASIptvServer.M3U
                             m3U.Name = match3.Groups[2].Value.Trim();
                             m3U.Categories = match3.Groups[1].Value.Trim();
                             m3U.Url = streamUrl;
-                            /* Console.WriteLine(m3U.Name);
-                             Console.WriteLine(m3U.Categories);
-                             Console.WriteLine(m3U.Url);*/
                         }
                         if (match4.Success)
                         {
@@ -93,9 +84,6 @@ namespace ASIptvServer.M3U
                             m3U.Name = match4.Groups[2].Value.Trim();
                             m3U.Logo = match4.Groups[1].Value.Trim();
                             m3U.Url = streamUrl;
-                            //Console.WriteLine(m3U.Name);
-                            //Console.WriteLine(m3U.Categories);
-                            //Console.WriteLine(m3U.Url);
                         }
                         if (match2.Success)
                         {
@@ -104,9 +92,6 @@ namespace ASIptvServer.M3U
                             m3U.Logo = match2.Groups[1].Value;
                             m3U.Categories = match2.Groups[2].Value.Trim();
                             m3U.Url = streamUrl;
-                            //Console.WriteLine(m3U.Name);
-                            //Console.WriteLine(m3U.Categories);
-                            //Console.WriteLine(m3U.Url);
                         }
                         if (match0.Success)
                         {
@@ -115,9 +100,6 @@ namespace ASIptvServer.M3U
                             m3U.Logo = match0.Groups[4].Value.Trim();
                             m3U.Categories = match0.Groups[2].Value.Trim();
                             m3U.Url = streamUrl;
-                            //Console.WriteLine(m3U.Name);
-                            //Console.WriteLine(m3U.Categories);
-                            //Console.WriteLine(m3U.Url);
                         }
                         if (match.Success)
                         {
@@ -126,9 +108,6 @@ namespace ASIptvServer.M3U
                             m3U.Logo = match.Groups[2].Value;
                             m3U.Categories = match.Groups[3].Value;
                             m3U.Url = streamUrl;
-                            //Console.WriteLine(m3U.Name);
-                            //Console.WriteLine(m3U.Categories);
-                            //Console.WriteLine(m3U.Url);
                         }
                         if (result == "movie")
                         {

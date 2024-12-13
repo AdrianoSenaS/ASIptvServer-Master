@@ -22,7 +22,7 @@ namespace ASIptvServer.Api.Controllers.Tv
         }
         // POST api/<ValuesController>
         [HttpGet("Categories")]
-        public ActionResult<IEnumerable<Categories>> GetCategories()
+        public ActionResult<IEnumerable<CategoriesModel>> GetCategories()
         {
             return DbTV.GetCategoryTv();
         }
