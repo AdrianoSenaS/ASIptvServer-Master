@@ -19,12 +19,20 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
+   
 }
+else
+{
+    // Servir os arquivos estáticos do build do Vite em produção
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+}
+
 
 // Configurar o middleware do Swagger
 app.UseSwaggerConfiguration();
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseCors();
 
@@ -33,4 +41,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run("http://*:8080");
+app.Run("https://*");

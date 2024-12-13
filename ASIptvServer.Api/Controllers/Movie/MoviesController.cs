@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ASIptvServer.Data.Data;
 using ASIptvServer.Data;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ASIptvServer.Api.Controllers.Movie
 {
@@ -22,7 +21,7 @@ namespace ASIptvServer.Api.Controllers.Movie
             return DbMovies.GetMoviesId(id);
         }
         [HttpGet("Categories")]
-        public ActionResult<IEnumerable<Categories>> GetMoviesCategories()
+        public ActionResult<IEnumerable<CategoriesModel>> GetMoviesCategories()
         {
             return DbMovies.GetCategoryMovies();
         }

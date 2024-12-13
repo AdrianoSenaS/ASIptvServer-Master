@@ -1,5 +1,5 @@
-﻿using System;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
+using ASIptvServer.Data.Database;
 
 namespace ASIptvServer.Data.Data
 {
@@ -13,8 +13,7 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                 {
                     connection.Open();
-                    string sql = "SELECT * FROM MOVIES";
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMovies, connection))
                     {
                         using (SQLiteDataReader reader = command.ExecuteReader())
                         {
@@ -49,8 +48,7 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                 {
                     connection.Open();
-                    string sql = "SELECT * FROM MOVIES WHERE ID=@ID";
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMoviesId, connection))
                     {
                         command.Parameters.AddWithValue("@ID", id);
                         using (SQLiteDataReader reader = command.ExecuteReader())
@@ -85,19 +83,17 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                 {
                     connection.Open();
-                    string sql = "SELECT COUNT(1) FROM MOVIES WHERE TITLE = @TITLE";
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMoviesCount, connection))
                     {
                         command.Parameters.AddWithValue("@TITLE", movie.Title);
                         var count = Convert.ToInt32(command.ExecuteScalar());
                         if (count == 0)
                         {
-                            var sql1 = "INSERT INTO MOVIES (TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE)VALUES(@TITLE, @LOGO, @CATEGORIES, @OVERVIEW, @URL, @DATE)";
-                            using (SQLiteCommand command1 = new SQLiteCommand(sql1, connection))
+                            using (SQLiteCommand command1 = new SQLiteCommand(Sql.InsertMovies, connection))
                             {
                                 command1.Parameters.AddWithValue("@TITLE", movie.Title);
                                 command1.Parameters.AddWithValue("@LOGO", movie.Logo);
-                                command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories.Replace("/", " "));
+                                command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
                                 command1.Parameters.AddWithValue("OVERVIEW", movie.Overview);
                                 command1.Parameters.AddWithValue("@URL", movie.Url);
                                 command1.Parameters.AddWithValue("@DATE", movie.Date);
@@ -112,23 +108,21 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        
-        public static List<Categories> GetCategoryMovies()
+        public static List<CategoriesModel> GetCategoryMovies()
         {
             try
             {
-                List<Categories> categories = new List<Categories>();
+                List<CategoriesModel> categories = new List<CategoriesModel>();
                 using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                 {
                     connection.Open();
-                    string sql = "SELECT * FROM CATEGORIES";
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSubCategoriesMovies, connection))
                     {
                         using (SQLiteDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                categories.Add(new Categories()
+                                categories.Add(new CategoriesModel()
                                 {
                                     Id = reader.GetInt32(0),
                                     Category = reader.GetString(1),
@@ -153,8 +147,7 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                 {
                     connection.Open();
-                    string sql = "SELECT * FROM MOVIES WHERE CATEGORIES = @CATEGORIES ";
-                    using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectCategoriesMovies, connection))
                     {
                         command.Parameters.AddWithValue("@CATEGORIES", category);
                         using (SQLiteDataReader reader = command.ExecuteReader())
@@ -182,27 +175,25 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetCategoryMovies(Categories category)
+        public static void SetCategoryMovies(CategoriesModel category)
         {
             try
             {
-                string sqls = "SELECT COUNT(1) FROM CATEGORIES WHERE CATEGORY = @CATEGORY";
                 using (SQLiteConnection connections = new SQLiteConnection(DbPath.Local))
                 {
                     connections.Open();
-                    using (SQLiteCommand commands = new SQLiteCommand(sqls, connections))
+                    using (SQLiteCommand commands = new SQLiteCommand(Sql.SelectCategoriesCount, connections))
                     {
-                        commands.Parameters.AddWithValue("@CATEGORY", category.Category.Replace("/", " "));
+                        commands.Parameters.AddWithValue("@CATEGORY", category.Category);
                         var count = Convert.ToInt32(commands.ExecuteScalar());
                         if (count == 0)
                         {
-                            string sql = "INSERT INTO CATEGORIES (CATEGORY, SUBCATEGORY) VALUES(@CATEGORY, @SUBCATEGORY)";
                             using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
                             {
                                 connection.Open();
-                                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
+                                using (SQLiteCommand command = new SQLiteCommand(Sql.InsertMoviesCategories, connection))
                                 {
-                                    command.Parameters.AddWithValue("@CATEGORY", category.Category.Replace("/", " "));
+                                    command.Parameters.AddWithValue("@CATEGORY", category.Category);
                                     command.Parameters.AddWithValue("@SUBCATEGORY", "Movies");
                                     command.ExecuteNonQuery();
                                 }

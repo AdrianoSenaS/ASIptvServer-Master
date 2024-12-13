@@ -16,15 +16,15 @@ namespace ASIptvServer.Api
                     Description = "Api para gerenciar filmes, séries e tv ao vivo",
                     Contact = new OpenApiContact
                     {
-                        Name = "Adriano Sena silva",
+                        Name = "Adriano Sena Silva",
                         Email = "adryanosenasilva@gmail.com",
+                        Url = new Uri("https://adrianosena.dev.br"),
                     }
                 });
 
                 // Outras configurações, como segurança, esquemas de autenticação, etc.
             });
         }
-
         public static void UseSwaggerConfiguration(this IApplicationBuilder app)
         {
             // Configuração do middleware do Swagger
