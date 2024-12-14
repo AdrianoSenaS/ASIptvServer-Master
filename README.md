@@ -28,7 +28,7 @@ ASIptvServer é um media server IPTV escrito em C# que fornece uma solução rob
 
 2. Inicie o servidor:
    ```bash
-   dotnet run --project ASIptvServer
+   sudo dotnet run --project ASIptvServer
    ```
 
 ### Windows
