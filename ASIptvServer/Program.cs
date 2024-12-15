@@ -4,8 +4,8 @@ using ASIptvServer.Api.Interfaces;
 using ASIptvServer.Api.Models;
 using ASIptvServer.Data.Data;
 using ASIptvServer.Data.Database;
-
-Startup.Start();
+using ASIptvServer.Configuration;
+using ASIptvServer.IO.FilesServer;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +15,10 @@ builder.Services.AddControllers();
 
 // Registrando a configuração do Swagger que está na classe separada
 builder.Services.AddSwaggerConfiguration();
+builder.Services.AddScoped<IVerification, VerificationOs>();
+builder.Services.AddScoped<IOsPath, OsPath>();
 builder.Services.AddScoped<IDatabase, DbData>();
+builder.Services.AddScoped<IDbPath, DbPath>();
 builder.Services.AddScoped<IMovieService, DbMovies>();
 builder.Services.AddScoped<ISeriesService, DbSeries>();
 builder.Services.AddScoped<ITvService, DbTV>();
@@ -35,7 +38,11 @@ else
     app.UseDefaultFiles();
     app.UseStaticFiles();
 }
-
+var scope = app.Services.CreateScope();
+var data = scope.ServiceProvider.GetService<IDatabase>();
+data.CreateDatabase();
+var path = scope.ServiceProvider.GetService<IOsPath>();
+path.CreatePath();
 
 // Configurar o middleware do Swagger
 app.UseSwaggerConfiguration();

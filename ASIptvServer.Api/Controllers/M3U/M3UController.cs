@@ -14,10 +14,11 @@ namespace ASIptvServer.Api.Controllers.M3U
     public class M3UController
     {
         private readonly IM3uService _m3uService;
-
-        public M3UController(IM3uService m3UService)
+        private readonly IVerification _verification;
+        public M3UController(IM3uService m3UService, IVerification verification)
         {
             _m3uService = m3UService;
+            _verification = verification;
         }
 
         [HttpPost("FileM3u")]
@@ -26,7 +27,7 @@ namespace ASIptvServer.Api.Controllers.M3U
         {
             if (file == null || file.Length == 0)
                 return "Nenhum arquivo selecionado";
-            var uploadPath = Path.Combine(VerificationOs.Verification().PathTempData);
+            var uploadPath = Path.Combine(_verification.Verification().PathTempData);
             path path = new path(uploadPath);
             Folder.CreateFolder(path);
             var filepath = Path.Combine(uploadPath, file.FileName);

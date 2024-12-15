@@ -5,9 +5,14 @@ namespace ASIptvServer.Data.Database
 {
     public class DbData: IDatabase
     {
+        private readonly IDbPath _dbPath;
+        public DbData(IDbPath dbPath)
+        {
+            _dbPath = dbPath;
+        }
         public void CreateDatabase()
         {
-            using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+            using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
             {
                 connection.Open();
                 string sql = @"CREATE TABLE IF NOT EXISTS MOVIES (ID INTEGER PRIMARY KEY, TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE);

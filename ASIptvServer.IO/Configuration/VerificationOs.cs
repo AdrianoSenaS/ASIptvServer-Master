@@ -2,9 +2,13 @@
 
 namespace ASIptvServer.Configuration
 {
-    public class VerificationOs
+    public interface IVerification
     {
-        public static IOVerificationPath Verification()
+        IOVerificationPath Verification();
+    }
+    public class VerificationOs : IVerification
+    {
+        public  IOVerificationPath Verification()
         {
             IOVerificationPath iOVerificationPaths = new IOVerificationPath();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

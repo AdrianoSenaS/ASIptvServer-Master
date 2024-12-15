@@ -7,12 +7,17 @@ namespace ASIptvServer.Data.Data
 {
     public class DbTV : ITvService
     {
+        private readonly IDbPath _dbPath;
+        public DbTV(IDbPath dbPath)
+        {
+            _dbPath = dbPath;
+        }
         public List<TvModel> GetTv()
         {
             try
             {
                 var tv = new List<TvModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectTV, connection))
@@ -46,7 +51,7 @@ namespace ASIptvServer.Data.Data
             try
             {
                 var tv = new List<TvModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectTVid, connection))
@@ -80,7 +85,7 @@ namespace ASIptvServer.Data.Data
         {
             try
             {
-                using(SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using(SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand commandSearch = new SQLiteCommand(Sql.SelectTVCount, connection))
@@ -112,7 +117,7 @@ namespace ASIptvServer.Data.Data
             try
             {
                 List<CategoriesModel> categories = new List<CategoriesModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local)) 
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local())) 
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSubCategoriesTV, connection))
@@ -145,7 +150,7 @@ namespace ASIptvServer.Data.Data
             try
             {
                 var categories = new List<TvModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectCategoriesTV, connection))
@@ -178,7 +183,7 @@ namespace ASIptvServer.Data.Data
         {
             try
             {
-                using (SQLiteConnection connection =new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection =new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand commandSearch = new SQLiteCommand(Sql.SelectCategoriesTVCount, connection))

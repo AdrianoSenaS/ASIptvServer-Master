@@ -2,17 +2,27 @@
 
 namespace ASIptvServer.IO.FilesServer
 {
-    public class OsPath
+    public interface IOsPath
     {
-        public static void CreatePath()
+        void CreatePath();
+    }
+    public class OsPath : IOsPath
+    {
+        private readonly IVerification _verification;
+
+        public OsPath(IVerification verification)
         {
-            path path = new path(VerificationOs.Verification().PathRot);
+            _verification = verification;
+        }
+        public  void CreatePath()
+        {
+            path path = new path(_verification.Verification().PathRot);
             Folder.CreateFolder(path);
-            path = new path(VerificationOs.Verification().PathData);
+            path = new path(_verification.Verification().PathData);
             Folder.CreateFolder(path);
-            path = new path(VerificationOs.Verification().PathTemp);
+            path = new path(_verification.Verification().PathTemp);
             Folder.CreateFolder(path);
-            path = new path(VerificationOs.Verification().PathTempData);
+            path = new path(_verification.Verification().PathTempData);
             Folder.CreateFolder(path);
         }
     }

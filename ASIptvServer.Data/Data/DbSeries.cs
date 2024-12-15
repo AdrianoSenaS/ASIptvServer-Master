@@ -7,10 +7,15 @@ namespace ASIptvServer.Data.Data
 {
     public class DbSeries : ISeriesService
     {
+        private readonly IDbPath _dbPath;
+        public DbSeries(IDbPath dbPath)
+        {
+            _dbPath = dbPath;
+        }
         public List<SeriesModel> GetSeries()
         {
             List<SeriesModel> seriesModels = new List<SeriesModel>();
-            using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+            using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
             {
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSeries, connection))
@@ -37,7 +42,7 @@ namespace ASIptvServer.Data.Data
         public List<SeriesModel> GetDbSeriesId(int id)
         {
             List<SeriesModel> seriesModels = new List<SeriesModel>();
-            using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+            using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
             {
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSeriesID, connection))
@@ -66,7 +71,7 @@ namespace ASIptvServer.Data.Data
         {
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSeriesCount, connection))
@@ -97,7 +102,7 @@ namespace ASIptvServer.Data.Data
             try
             {
                 List<CategoriesModel> categories = new List<CategoriesModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSubcategoriesSeries, connection))
@@ -129,7 +134,7 @@ namespace ASIptvServer.Data.Data
             try
             {
                 List<SeriesModel> series = new List<SeriesModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectCategoriesSeries, connection))
@@ -162,7 +167,7 @@ namespace ASIptvServer.Data.Data
         {
             try
             {
-                using (SQLiteConnection connections = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connections = new SQLiteConnection(_dbPath.Local()))
                 {
                     connections.Open();
                     using (SQLiteCommand commands = new SQLiteCommand(Sql.SelectCategoriesCountSeries, connections))
@@ -171,7 +176,7 @@ namespace ASIptvServer.Data.Data
                         var count = Convert.ToInt32(commands.ExecuteScalar());
                         if (count == 0)
                         {
-                            using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                            using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                             {
                                 connection.Open();
                                 using (SQLiteCommand command = new SQLiteCommand(Sql.InsertCategoriesSeries, connection))

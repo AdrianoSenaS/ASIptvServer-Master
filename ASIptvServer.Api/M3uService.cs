@@ -40,14 +40,9 @@ namespace ASIptvServer.Api.Models
                             movie.Title = result.Name;
                             Console.WriteLine("Resultado: " + result.Name);
                         }
-                        if(item.Name != null || item.Name != string.Empty)
-                        {
-                            movie.Title = item.Name;
-                            Console.WriteLine("Resultado: " + item.Name);
-                        }
                         else
                         {
-                            movie.Title = string.Empty;
+                            movie.Title = item.Name;
                         }
                         movie.Logo = item.Logo;
                         movie.Overview = string.Empty;
@@ -115,14 +110,9 @@ namespace ASIptvServer.Api.Models
                             movie.Title = result.Name;
                             Console.WriteLine("Resultado: " + result.Name);
                         }
-                        if (item.Name != null || item.Name != string.Empty)
-                        {
-                            movie.Title = item.Name;
-                            Console.WriteLine("Resultado: " + item.Name);
-                        }
                         else
                         {
-                            movie.Title = string.Empty;
+                            movie.Title = item.Name;
                         }
                         movie.Logo = item.Logo;
                         movie.Overview = string.Empty;
