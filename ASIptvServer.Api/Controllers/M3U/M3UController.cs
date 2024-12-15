@@ -1,4 +1,5 @@
-﻿using ASIptvServer.Api.Models;
+﻿using ASIptvServer.Api.Interfaces;
+using ASIptvServer.Api.Models;
 using ASIptvServer.Configuration;
 using ASIptvServer.IO;
 using ASIptvServer.IO.FilesServer;
@@ -10,8 +11,14 @@ namespace ASIptvServer.Api.Controllers.M3U
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class M3uUrlController
+    public class M3UController
     {
+        private readonly IM3uService _m3uService;
+
+        public M3UController(IM3uService m3UService)
+        {
+            _m3uService = m3UService;
+        }
 
         [HttpPost("FileM3u")]
         [RequestSizeLimit(1024 * 1024 * 1024)] // 1 GB
@@ -29,7 +36,7 @@ namespace ASIptvServer.Api.Controllers.M3U
                 {
                     await file.CopyToAsync(stream);
                 }
-                M3uUrlModel.UpdateM3uPath(filepath);
+                _m3uService.UpdateM3uPath(filepath);
                 return "Lista Atualizada" + (new { FilePath = filepath }   );
             }
             catch (Exception ex)
@@ -40,7 +47,7 @@ namespace ASIptvServer.Api.Controllers.M3U
         [HttpPost("UrlM3u")]
         public ActionResult<string> UrlM3u(string url)
         {
-            M3uUrlModel.UpdateM3uUrl(url);
+            _m3uService.UpdateM3uUrl(url);
             return "Lista Atualizada";
         }
     }

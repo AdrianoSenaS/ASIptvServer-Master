@@ -1,11 +1,14 @@
 ﻿using System.Data.SQLite;
 using ASIptvServer.Data.Database;
+using ASIptvServer.Models;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Data.Data
 {
-    public class DbMovies
+    
+    public class DbMovies : IMovieService
     {
-        public static List<MovieModel> GetMovies()
+        public List<MovieModel> GetMovies()
         {
             try
             {
@@ -40,7 +43,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<MovieModel> GetMoviesId(int id)
+        public List<MovieModel> GetMoviesId(int id)
         {
             try
             {
@@ -76,7 +79,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetMovies(MovieModel movie)
+        public void SetMovies(MovieModel movie)
         {
             try
             {
@@ -108,7 +111,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<CategoriesModel> GetCategoryMovies()
+        public List<CategoriesModel> GetCategoryMovies()
         {
             try
             {
@@ -139,7 +142,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<MovieModel> GetCategoryMoviesId(string category)
+        public  List<MovieModel> GetCategoryMoviesId(string category)
         {
             try
             {
@@ -175,7 +178,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetCategoryMovies(CategoriesModel category)
+        public void SetCategoryMovies(CategoriesModel category)
         {
             try
             {
@@ -197,7 +200,6 @@ namespace ASIptvServer.Data.Data
                                     command.Parameters.AddWithValue("@SUBCATEGORY", "Movies");
                                     command.ExecuteNonQuery();
                                 }
-                                connection.Close();
                             }
                         }
                     }

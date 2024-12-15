@@ -1,11 +1,13 @@
 ﻿using System.Data.SQLite;
 using ASIptvServer.Data.Database;
+using ASIptvServer.Api.Interfaces;
+using ASIptvServer.Models;
 
 namespace ASIptvServer.Data.Data
 {
-    public class DbTV
+    public class DbTV : ITvService
     {
-        public static List<TvModel> GetTv()
+        public List<TvModel> GetTv()
         {
             try
             {
@@ -39,7 +41,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<TvModel> GetTvId(int id) 
+        public List<TvModel> GetTvId(int id) 
         {
             try
             {
@@ -74,7 +76,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetTv(TvModel tvModel)
+        public void SetTv(TvModel tvModel)
         {
             try
             {
@@ -105,7 +107,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<CategoriesModel> GetCategoryTv()
+        public List<CategoriesModel> GetCategoryTv()
         {
             try
             {
@@ -138,7 +140,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<TvModel> GetCategoryTvId(string category)
+        public List<TvModel> GetCategoryTvId(string category)
         {
             try
             {
@@ -172,7 +174,7 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetCategoryTv(CategoriesModel categories)
+        public void SetCategoryTv(CategoriesModel categories)
         {
             try
             {

@@ -1,15 +1,26 @@
 ﻿using ASIptvServer.M3U;
 using ASIptvServer.Naming.Renamber;
 using ASIptvServer.Naming;
-using ASIptvServer.Data.Data;
-using ASIptvServer.Data;
+using ASIptvServer.Models;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Api.Models
 {
-    public class M3uUrlModel
-    {
 
-        public static void UpdateM3uPath(string pathM3u)
+    public class M3uService : IM3uService
+    {
+        private readonly IMovieService _movieService;
+        private readonly ISeriesService _seriesService;
+        private readonly ITvService _tvService;
+
+        public M3uService(IMovieService movieService, ISeriesService seriesService, ITvService tvService)
+        {
+            _movieService = movieService;
+            _seriesService = seriesService;
+            _tvService = tvService;
+        }
+
+        public void UpdateM3uPath(string pathM3u)
         {
             M3UPath m3UPath = new M3UPath(pathM3u);
             var dt = M3UList.M3uPath(m3UPath);
@@ -29,19 +40,23 @@ namespace ASIptvServer.Api.Models
                             movie.Title = result.Name;
                             Console.WriteLine("Resultado: " + result.Name);
                         }
-                        else
+                        if(item.Name != null || item.Name != string.Empty)
                         {
                             movie.Title = item.Name;
                             Console.WriteLine("Resultado: " + item.Name);
+                        }
+                        else
+                        {
+                            movie.Title = string.Empty;
                         }
                         movie.Logo = item.Logo;
                         movie.Overview = string.Empty;
                         movie.Categories = item.Categories;
                         movie.Url = item.Url;
                         movie.Date = result.Year;
-                        DbMovies.SetMovies(movie);
+                       _movieService.SetMovies(movie);
                         category.Category = item.Categories;
-                        DbMovies.SetCategoryMovies(category);
+                        _movieService.SetCategoryMovies(category);
                     }
                     if (item.Tv)
                     {
@@ -52,10 +67,24 @@ namespace ASIptvServer.Api.Models
                         tv.Logo = item.Logo;
                         tv.Categories = item.Categories;
                         tv.Url = item.Url;
-                        DbTV.SetTv(tv);
+                        _tvService.SetTv(tv);
                         categories.Category = item.Categories;
-                        DbTV.SetCategoryTv(categories);
+                        _tvService.SetCategoryTv(categories);
                         Console.WriteLine("Resultado: " + item.Name);
+                    }
+                    if (result.IsSerie)
+                    {
+                        SeriesModel series = new SeriesModel();
+                        CategoriesModel categories = new CategoriesModel();
+                        series.Id = item.Id;
+                        series.Title = result.Name;
+                        series.Logo = item.Logo;
+                        series.Categories = item.Categories;
+                        series.Overview = string.Empty;
+                        _seriesService.SetSeries(series);
+                        categories.Category = item.Categories;
+                        _seriesService.SetCategorySeries(categories);
+                        Console.WriteLine("Adicionando: " + result.Name);
                     }
                 }
                 catch (Exception ex)
@@ -65,7 +94,7 @@ namespace ASIptvServer.Api.Models
                 }
             }
         }
-        public static void UpdateM3uUrl(string url)
+        public  void UpdateM3uUrl(string url)
         {
 
             M3Uurl m3Uurl = new M3Uurl(url);
@@ -86,19 +115,23 @@ namespace ASIptvServer.Api.Models
                             movie.Title = result.Name;
                             Console.WriteLine("Resultado: " + result.Name);
                         }
-                        else
+                        if (item.Name != null || item.Name != string.Empty)
                         {
                             movie.Title = item.Name;
                             Console.WriteLine("Resultado: " + item.Name);
+                        }
+                        else
+                        {
+                            movie.Title = string.Empty;
                         }
                         movie.Logo = item.Logo;
                         movie.Overview = string.Empty;
                         movie.Categories = item.Categories;
                         movie.Url = item.Url;
                         movie.Date = result.Year;
-                        DbMovies.SetMovies(movie);
+                        _movieService.SetMovies(movie);
                         category.Category = item.Categories;
-                        DbMovies.SetCategoryMovies(category);
+                        _movieService.SetCategoryMovies(category);
 
                     }
                     if (item.Tv)
@@ -110,10 +143,24 @@ namespace ASIptvServer.Api.Models
                         tv.Logo = item.Logo;
                         tv.Categories = item.Categories;
                         tv.Url = item.Url;
-                        DbTV.SetTv(tv);
+                        _tvService.SetTv(tv);
                         categories.Category = item.Categories;
-                        DbTV.SetCategoryTv(categories);
+                        _tvService.SetCategoryTv(categories);
                         Console.WriteLine("Resultado: " + item.Name);
+                    }
+                    if (result.IsSerie)
+                    {
+                        SeriesModel series = new SeriesModel();
+                        CategoriesModel categories = new CategoriesModel();
+                        series.Id = item.Id;
+                        series.Title = result.Name;
+                        series.Logo = item.Logo;
+                        series.Categories = item.Categories;
+                        series.Overview = string.Empty;
+                        _seriesService.SetSeries(series);
+                        categories.Category = item.Categories;
+                        _seriesService.SetCategorySeries(categories);
+                        Console.WriteLine("Adicionando: " + result.Name);
                     }
                 }
                 catch (Exception ex)

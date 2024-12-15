@@ -1,10 +1,11 @@
 ﻿using System.Data.SQLite;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Data.Database
 {
-    public class DbData
+    public class DbData: IDatabase
     {
-        public static void CreateDatabase()
+        public void CreateDatabase()
         {
             using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
             {
