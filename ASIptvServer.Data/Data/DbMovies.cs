@@ -1,16 +1,24 @@
 ﻿using System.Data.SQLite;
 using ASIptvServer.Data.Database;
+using ASIptvServer.Api.Models;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Data.Data
 {
-    public class DbMovies
+    
+    public class DbMovies : IMovieService
     {
-        public static List<MovieModel> GetMovies()
+        private readonly IDbPath _dbPath;
+        public DbMovies(IDbPath dbPath)
+        {
+            _dbPath = dbPath;
+        }
+        public List<MovieModel> GetMovies()
         {
             try
             {
                 List<MovieModel> movies = new List<MovieModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMovies, connection))
@@ -40,12 +48,12 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<MovieModel> GetMoviesId(int id)
+        public List<MovieModel> GetMoviesId(int id)
         {
             try
             {
                 List<MovieModel> movies = new List<MovieModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMoviesId, connection))
@@ -76,11 +84,11 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetMovies(MovieModel movie)
+        public void SetMovies(MovieModel movie)
         {
             try
             {
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMoviesCount, connection))
@@ -108,12 +116,12 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<CategoriesModel> GetCategoryMovies()
+        public List<CategoriesModel> GetCategoryMovies()
         {
             try
             {
                 List<CategoriesModel> categories = new List<CategoriesModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectSubCategoriesMovies, connection))
@@ -139,12 +147,12 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static List<MovieModel> GetCategoryMoviesId(string category)
+        public  List<MovieModel> GetCategoryMoviesId(string category)
         {
             try
             {
                 List<MovieModel> movies = new List<MovieModel>();
-                using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectCategoriesMovies, connection))
@@ -175,11 +183,11 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public static void SetCategoryMovies(CategoriesModel category)
+        public void SetCategoryMovies(CategoriesModel category)
         {
             try
             {
-                using (SQLiteConnection connections = new SQLiteConnection(DbPath.Local))
+                using (SQLiteConnection connections = new SQLiteConnection(_dbPath.Local()))
                 {
                     connections.Open();
                     using (SQLiteCommand commands = new SQLiteCommand(Sql.SelectCategoriesCount, connections))
@@ -188,7 +196,7 @@ namespace ASIptvServer.Data.Data
                         var count = Convert.ToInt32(commands.ExecuteScalar());
                         if (count == 0)
                         {
-                            using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+                            using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                             {
                                 connection.Open();
                                 using (SQLiteCommand command = new SQLiteCommand(Sql.InsertMoviesCategories, connection))
@@ -197,7 +205,6 @@ namespace ASIptvServer.Data.Data
                                     command.Parameters.AddWithValue("@SUBCATEGORY", "Movies");
                                     command.ExecuteNonQuery();
                                 }
-                                connection.Close();
                             }
                         }
                     }

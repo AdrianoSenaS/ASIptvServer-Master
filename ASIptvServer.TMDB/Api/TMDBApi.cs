@@ -1,10 +1,11 @@
-﻿using RestSharp;
+﻿using ASIptvServer.TMDB.Models;
+using RestSharp;
 namespace ASIptvServer.TMDB.Api
 {
     public class TMDBApi
     {
-        public static ApiRest api = new ApiRest();
-        public static ApiRest Api(ApiHeaders headers)
+        public static ApiRestModel api = new ApiRestModel();
+        public static ApiRestModel Api(ApiHeadersModel headers)
         {
             var options = new RestClientOptions(headers.Options);
             var client = new RestClient(options);

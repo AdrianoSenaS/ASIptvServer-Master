@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ASIptvServer.Data.Data;
-using ASIptvServer.Data;
+using ASIptvServer.Api.Models;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Api.Controllers.Movie
 {
@@ -8,28 +8,38 @@ namespace ASIptvServer.Api.Controllers.Movie
     [ApiController]
     public class MoviesController
     {
+        private readonly IMovieService _movieService;
+
+        public MoviesController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
+
         // GET: api/<ValuesController>
         [HttpGet]
         public ActionResult<IEnumerable<MovieModel>> GetMovies()
         {
-            return DbMovies.GetMovies();
+            var movies= _movieService.GetMovies();
+            return movies;
         }
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<MovieModel>> GetMoviesId(int id)
         {
-            return DbMovies.GetMoviesId(id);
+            var movies = _movieService.GetMoviesId(id);
+            return movies;
         }
         [HttpGet("Categories")]
         public ActionResult<IEnumerable<CategoriesModel>> GetMoviesCategories()
         {
-            return DbMovies.GetCategoryMovies();
+            var categories = _movieService.GetCategoryMovies();
+            return categories;
         }
         [HttpGet("Categories/{Categories}")]
         public ActionResult<IEnumerable<MovieModel>> GetMoviesCategoriesId(string Categories)
         {
-            return DbMovies.GetCategoryMoviesId(Categories);
+            var categoriesId = _movieService.GetCategoryMoviesId(Categories);
+            return categoriesId;
         }
-
     }
 }

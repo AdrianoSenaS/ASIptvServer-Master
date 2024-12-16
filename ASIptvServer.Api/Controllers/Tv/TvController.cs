@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ASIptvServer.Data.Data;
-using ASIptvServer.Data;
+using ASIptvServer.Api.Models;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Api.Controllers.Tv
 {
@@ -8,29 +8,35 @@ namespace ASIptvServer.Api.Controllers.Tv
     [ApiController]
     public class TvController
     {
-        // GET: api/<ValuesController>
+        private readonly ITvService _tvService;
+
+        public TvController(ITvService tvService)
+        {
+            _tvService = tvService;
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<TvModel>> GetTv()
         {
-            return DbTV.GetTv(); ;
+            return _tvService.GetTv(); ;
         }
-        // GET api/<ValuesController>/5
+
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<TvModel>> GetTvId(int id)
         {
-            return DbTV.GetTvId(id);
+            return _tvService.GetTvId(id);
         }
-        // POST api/<ValuesController>
+
         [HttpGet("Categories")]
         public ActionResult<IEnumerable<CategoriesModel>> GetCategories()
         {
-            return DbTV.GetCategoryTv();
+            return _tvService.GetCategoryTv();
         }
-        // PUT api/<ValuesController>/5
+
         [HttpGet("Categories/{Categories}")]
         public ActionResult<IEnumerable<TvModel>> GetCategoriesId(string Categories)
         {
-            return DbTV.GetCategoryTvId(Categories);
+            return _tvService.GetCategoryTvId(Categories);
         }
     }
 }

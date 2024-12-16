@@ -1,25 +1,57 @@
+using ASIptvServer.Api.Interfaces;
+using ASIptvServer.Data.Data;
+using ASIptvServer.Data.Database;
+using ASIptvServer.IO;
+using ASIptvServer.System.Configuration;
+using ASIptvServer.Configuration.Api;
+using ASIptvServer.Api.Services.M3u;
+using ASIptvServer.Api.Services.Movies;
+using ASIptvServer.TMDB;
 using ASIptvServer;
-using ASIptvServer.Api;
-
-Startup.Start();
-
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Adicionar serviços ao contêiner, incluindo o Swagger
-builder.Services.AddControllers();
-
 // Registrando a configuração do Swagger que está na classe separada
 builder.Services.AddSwaggerConfiguration();
+// Adicionar serviços ao contêiner, incluindo o Swagger
+builder.Services.AddControllers();
+builder.Services.AddScoped<IVerification, VerificationOs>();
+builder.Services.AddScoped<IOsPath, OsPath>();
+builder.Services.AddScoped<IDatabase, DbData>();
+builder.Services.AddScoped<IDbPath, DbPath>();
+builder.Services.AddScoped<IMovieService, DbMovies>();
+builder.Services.AddScoped<ISeriesService, DbSeries>();
+builder.Services.AddScoped<ITvService, DbTV>();
+builder.Services.AddScoped<IM3uService, M3uService>();
+builder.Services.AddScoped<ImoviesSevices, MoviesServieces>();
+builder.Services.AddScoped<ITMDBMovie, GetMovies>();
+
 
 
 var app = builder.Build();
+var scope = app.Services.CreateScope();
+var data = scope.ServiceProvider.GetService<IDatabase>();
+data.CreateDatabase();
+var path = scope.ServiceProvider.GetService<IOsPath>();
+path.CreatePath();
+
+
+IVerification verification = scope.ServiceProvider.GetService<IVerification>();
+
+
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.AddConsole();
+    builder.AddProvider(new FileLoggerProvider(verification.Verification().PathTemp + "App.log"));
+});
+ILogger logger = loggerFactory.CreateLogger<Program>();
+logger.LogInformation("Iniciando aplicação...");
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
-   
 }
 else
 {
@@ -27,6 +59,7 @@ else
     app.UseDefaultFiles();
     app.UseStaticFiles();
 }
+
 
 
 // Configurar o middleware do Swagger

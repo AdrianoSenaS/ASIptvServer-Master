@@ -1,12 +1,18 @@
 ﻿using System.Data.SQLite;
+using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Data.Database
 {
-    public class DbData
+    public class DbData: IDatabase
     {
-        public static void CreateDatabase()
+        private readonly IDbPath _dbPath;
+        public DbData(IDbPath dbPath)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(DbPath.Local))
+            _dbPath = dbPath;
+        }
+        public void CreateDatabase()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
             {
                 connection.Open();
                 string sql = @"CREATE TABLE IF NOT EXISTS MOVIES (ID INTEGER PRIMARY KEY, TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE);

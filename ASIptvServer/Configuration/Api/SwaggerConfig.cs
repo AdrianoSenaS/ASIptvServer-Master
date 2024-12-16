@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-namespace ASIptvServer.Api
+﻿using Microsoft.OpenApi.Models;
+namespace ASIptvServer.Configuration.Api
 {
     public static class SwaggerConfig
     {

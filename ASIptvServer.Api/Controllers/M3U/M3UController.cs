@@ -1,5 +1,6 @@
-﻿using ASIptvServer.Api.Models;
-using ASIptvServer.Configuration;
+﻿using ASIptvServer.Api.Interfaces;
+using ASIptvServer.Api.Models;
+using ASIptvServer.System.Configuration;
 using ASIptvServer.IO;
 using ASIptvServer.IO.FilesServer;
 using Microsoft.AspNetCore.Http;
@@ -10,8 +11,15 @@ namespace ASIptvServer.Api.Controllers.M3U
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class M3uUrlController
+    public class M3UController
     {
+        private readonly IM3uService _m3uService;
+        private readonly IVerification _verification;
+        public M3UController(IM3uService m3UService, IVerification verification)
+        {
+            _m3uService = m3UService;
+            _verification = verification;
+        }
 
         [HttpPost("FileM3u")]
         [RequestSizeLimit(1024 * 1024 * 1024)] // 1 GB
@@ -19,7 +27,7 @@ namespace ASIptvServer.Api.Controllers.M3U
         {
             if (file == null || file.Length == 0)
                 return "Nenhum arquivo selecionado";
-            var uploadPath = Path.Combine(VerificationOs.Verification().PathTempData);
+            var uploadPath = Path.Combine(_verification.Verification().PathTempData);
             path path = new path(uploadPath);
             Folder.CreateFolder(path);
             var filepath = Path.Combine(uploadPath, file.FileName);
@@ -29,8 +37,8 @@ namespace ASIptvServer.Api.Controllers.M3U
                 {
                     await file.CopyToAsync(stream);
                 }
-                M3uUrlModel.UpdateM3uPath(filepath);
-                return "Lista Atualizada" + (new { FilePath = filepath }   );
+                Task.Run(()=> _m3uService.UpdateM3uPath(filepath));
+                return "Lista Enviada" + (new { FilePath = filepath }   );
             }
             catch (Exception ex)
             {
@@ -38,9 +46,9 @@ namespace ASIptvServer.Api.Controllers.M3U
             }
         }
         [HttpPost("UrlM3u")]
-        public ActionResult<string> UrlM3u(string url)
+        public async Task<ActionResult<string>> UrlM3u(string url)
         {
-            M3uUrlModel.UpdateM3uUrl(url);
+            Task.Run(()=>_m3uService.UpdateM3uUrl(url));
             return "Lista Atualizada";
         }
     }

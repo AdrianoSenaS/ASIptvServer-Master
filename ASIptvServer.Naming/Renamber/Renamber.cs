@@ -16,28 +16,35 @@ namespace ASIptvServer.Naming.Renamber
 
         public static Naming SetNaming(NamingPath name)
         {
-            EmptyYear = Regex.Replace(name.path, NamingRegex.YearString, "").Trim();
-            Name = Regex.Replace(EmptyYear, NamingRegex.RemoveS, "").Trim();
-            var ipunt = name.path.Replace("-", "").Replace("(", "").Replace(")", "").Trim();
-            Year = NamingRegex.YearRegex.Match(ipunt);
-            Serie = NamingRegex.Serie.Match(name.path);
-            if (Serie.Success)
+            try
             {
-                IsSerie = true;
-            }
-            else
-            {
-                IsSerie = false;
+                EmptyYear = Regex.Replace(name.path, NamingRegex.YearString, "").Trim();
+                Name = Regex.Replace(EmptyYear, NamingRegex.RemoveS, "").Trim();
+                var ipunt = name.path.Replace("-", "").Replace("(", "").Replace(")", "").Trim();
+                Year = NamingRegex.YearRegex.Match(ipunt);
+                Serie = NamingRegex.Serie.Match(name.path);
+                if (Serie.Success)
+                {
+                    IsSerie = true;
+                }
+                else
+                {
+                    IsSerie = false;
 
+                }
+                if (EmptyYear == string.Empty || Name == string.Empty)
+                {
+                    naming.Name = name.path;
+                }
+                naming.Name = Name;
+                naming.Year = Year.Value;
+                naming.IsSerie = IsSerie;
+                return naming;
             }
-            if (EmptyYear == string.Empty || Name == string.Empty)
+            catch (Exception)
             {
-               naming.Name = name.path;
+                return naming;
             }
-            naming.Name = Name;
-            naming.Year = Year.Value;
-            naming.IsSerie = IsSerie;
-            return naming;
         }
     }
 }
