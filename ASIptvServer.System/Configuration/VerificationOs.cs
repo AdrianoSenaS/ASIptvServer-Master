@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
-
-namespace ASIptvServer.Configuration
+using ASIptvServer.System.IO;
+namespace ASIptvServer.System.Configuration
 {
     public interface IVerification
     {
@@ -8,7 +8,7 @@ namespace ASIptvServer.Configuration
     }
     public class VerificationOs : IVerification
     {
-        public  IOVerificationPath Verification()
+        public IOVerificationPath Verification()
         {
             IOVerificationPath iOVerificationPaths = new IOVerificationPath();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

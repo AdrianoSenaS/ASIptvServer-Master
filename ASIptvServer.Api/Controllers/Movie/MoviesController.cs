@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ASIptvServer.Models;
+using ASIptvServer.Api.Models;
 using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Api.Controllers.Movie

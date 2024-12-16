@@ -1,6 +1,6 @@
-﻿using ASIptvServer.Configuration;
-
-namespace ASIptvServer.IO.FilesServer
+﻿using ASIptvServer.System.Configuration;
+using ASIptvServer.IO.FilesServer;
+namespace ASIptvServer.IO
 {
     public interface IOsPath
     {

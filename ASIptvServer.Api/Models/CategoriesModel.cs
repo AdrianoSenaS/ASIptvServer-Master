@@ -1,5 +1,5 @@
 ﻿
-namespace ASIptvServer.Models
+namespace ASIptvServer.Api.Models
 {
    public class CategoriesModel
     {

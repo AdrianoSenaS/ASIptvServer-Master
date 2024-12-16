@@ -10,7 +10,7 @@ namespace ASIptvServer.Data.Database
         public static string SelectMoviesCount = "SELECT COUNT(1) FROM MOVIES WHERE TITLE = @TITLE";
         public static string InsertMovies = "INSERT INTO MOVIES (TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE)VALUES(@TITLE, @LOGO, @CATEGORIES, @OVERVIEW, @URL, @DATE)";
         public static string SelectSubCategoriesMovies = "SELECT * FROM CATEGORIES WHERE SUBCATEGORY = 'Movies'";
-        public static string SelectCategoriesMovies = "SELECT * FROM MOVIES WHERE CATEGORIES = @CATEGORIES ";
+        public static string SelectCategoriesMovies = "SELECT * FROM MOVIES WHERE CATEGORIES = @CATEGORIES";
         public static string SelectCategoriesCount = "SELECT COUNT(1) FROM CATEGORIES WHERE CATEGORY = @CATEGORY";
         public static string InsertMoviesCategories = "INSERT INTO CATEGORIES (CATEGORY, SUBCATEGORY) VALUES(@CATEGORY, @SUBCATEGORY)";
         

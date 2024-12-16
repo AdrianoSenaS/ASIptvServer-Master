@@ -1,6 +1,6 @@
 ﻿using ASIptvServer.Api.Interfaces;
 using ASIptvServer.Api.Models;
-using ASIptvServer.Configuration;
+using ASIptvServer.System.Configuration;
 using ASIptvServer.IO;
 using ASIptvServer.IO.FilesServer;
 using Microsoft.AspNetCore.Http;
@@ -37,8 +37,8 @@ namespace ASIptvServer.Api.Controllers.M3U
                 {
                     await file.CopyToAsync(stream);
                 }
-                _m3uService.UpdateM3uPath(filepath);
-                return "Lista Atualizada" + (new { FilePath = filepath }   );
+                Task.Run(()=> _m3uService.UpdateM3uPath(filepath));
+                return "Lista Enviada" + (new { FilePath = filepath }   );
             }
             catch (Exception ex)
             {
@@ -46,9 +46,9 @@ namespace ASIptvServer.Api.Controllers.M3U
             }
         }
         [HttpPost("UrlM3u")]
-        public ActionResult<string> UrlM3u(string url)
+        public async Task<ActionResult<string>> UrlM3u(string url)
         {
-            _m3uService.UpdateM3uUrl(url);
+            Task.Run(()=>_m3uService.UpdateM3uUrl(url));
             return "Lista Atualizada";
         }
     }

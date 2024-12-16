@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 using ASIptvServer.Data.Database;
-using ASIptvServer.Models;
+using ASIptvServer.Api.Models;
 using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Data.Data

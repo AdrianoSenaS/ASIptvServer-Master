@@ -1,4 +1,4 @@
-﻿using ASIptvServer.Models;
+﻿using ASIptvServer.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using ASIptvServer.Api.Interfaces;
 

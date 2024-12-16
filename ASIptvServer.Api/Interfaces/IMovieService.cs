@@ -1,4 +1,4 @@
-﻿using ASIptvServer.Models;
+﻿using ASIptvServer.Api.Models;
 
 namespace ASIptvServer.Api.Interfaces
 {

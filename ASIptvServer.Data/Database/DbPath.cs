@@ -1,4 +1,4 @@
-﻿using ASIptvServer.Configuration;
+﻿using ASIptvServer.System.Configuration;
 using ASIptvServer.Api.Interfaces;
 namespace ASIptvServer.Data.Database
 {

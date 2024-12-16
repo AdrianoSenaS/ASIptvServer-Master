@@ -1,9 +1,9 @@
 ﻿using RestSharp;
 
 
-namespace ASIptvServer.TMDB
+namespace ASIptvServer.TMDB.Models
 {
-    public class ApiRest
+    public class ApiRestModel
     {
         public RestClient restClient { get; set; }
         public RestRequest restRequest { get; set; }
