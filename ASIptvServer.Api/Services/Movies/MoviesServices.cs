@@ -9,14 +9,14 @@ namespace ASIptvServer.Api.Services.Movies
     {
         void Movie(M3U.M3U m3U, Naming.Naming naming);
     }
-    public class MoviesServieces : ImoviesSevices
+    public class MoviesServices : ImoviesSevices
     {
-        public readonly ITMDBMovie _itdmMovie;
+        public readonly ITMDBMovie _itmdbMovie;
         private readonly IMovieService _movieService;
         private readonly IVerification _verification;
-        public MoviesServieces(ITMDBMovie itdmMovie, IMovieService movieService, IVerification verification)
+        public MoviesServices(ITMDBMovie itmdbMovie, IMovieService movieService, IVerification verification)
         {
-            _itdmMovie = itdmMovie;
+            _itmdbMovie = itmdbMovie;
             _movieService = movieService;
             _verification = verification;
         }
@@ -31,7 +31,7 @@ namespace ASIptvServer.Api.Services.Movies
             string imagTdbm = "https://image.tmdb.org/t/p/w500";
             MovieModel movie = new MovieModel();
             CategoriesModel categories = new CategoriesModel();
-            var result = _itdmMovie.GetFilms(naming.Name, naming.Year);
+            var result = _itmdbMovie.GetMovie(naming.Name, naming.Year);
             if (result.Title != null)
             {
                 
@@ -47,7 +47,6 @@ namespace ASIptvServer.Api.Services.Movies
             }
             if (m3U.Categories != null)
             {
-                logger.LogInformation("Adicionando Categoria: " + m3U.Categories);
                 movie.Categories = m3U.Categories;
                 categories.Category = m3U.Categories;
             }
@@ -64,7 +63,6 @@ namespace ASIptvServer.Api.Services.Movies
             _movieService.SetMovies(movie);
             _movieService.SetCategoryMovies(categories);
             logger.LogInformation("Fime adicionado com sucesso! "+ movie.Title);
-            logger.LogInformation("Categoria Adicionada com sucesso! " + categories.Category);
         }
     }
 }

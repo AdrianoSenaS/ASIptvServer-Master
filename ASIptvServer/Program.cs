@@ -8,6 +8,8 @@ using ASIptvServer.Api.Services.M3u;
 using ASIptvServer.Api.Services.Movies;
 using ASIptvServer.TMDB;
 using ASIptvServer;
+using ASIptvServer.Api.Services.IO;
+using ASIptvServer.Api.Services.Tv;
 
 var builder = WebApplication.CreateBuilder(args);
 // Registrando a configuração do Swagger que está na classe separada
@@ -22,17 +24,20 @@ builder.Services.AddScoped<IMovieService, DbMovies>();
 builder.Services.AddScoped<ISeriesService, DbSeries>();
 builder.Services.AddScoped<ITvService, DbTV>();
 builder.Services.AddScoped<IM3uService, M3uService>();
-builder.Services.AddScoped<ImoviesSevices, MoviesServieces>();
+builder.Services.AddScoped<ImoviesSevices, MoviesServices>();
 builder.Services.AddScoped<ITMDBMovie, GetMovies>();
+builder.Services.AddScoped<IUploadService, UploadService>();
+builder.Services.AddScoped<ITvServices, TvServices>();
 
 
 
 var app = builder.Build();
 var scope = app.Services.CreateScope();
-var data = scope.ServiceProvider.GetService<IDatabase>();
-data.CreateDatabase();
 var path = scope.ServiceProvider.GetService<IOsPath>();
 path.CreatePath();
+var data = scope.ServiceProvider.GetService<IDatabase>();
+data.CreateDatabase();
+
 
 
 IVerification verification = scope.ServiceProvider.GetService<IVerification>();
