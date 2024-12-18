@@ -5,7 +5,6 @@ using ASIptvServer.Api.Interfaces;
 
 namespace ASIptvServer.Data.Data
 {
-    
     public class DbMovies : IMovieService
     {
         private readonly IDbPath _dbPath;
@@ -91,23 +90,16 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
-                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMoviesCount, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.InsertMovies, connection))
                     {
+                        command.Parameters.AddWithValue("@ID", movie.Id);
                         command.Parameters.AddWithValue("@TITLE", movie.Title);
-                        var count = Convert.ToInt32(command.ExecuteScalar());
-                        if (count == 0)
-                        {
-                            using (SQLiteCommand command1 = new SQLiteCommand(Sql.InsertMovies, connection))
-                            {
-                                command1.Parameters.AddWithValue("@TITLE", movie.Title);
-                                command1.Parameters.AddWithValue("@LOGO", movie.Logo);
-                                command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
-                                command1.Parameters.AddWithValue("OVERVIEW", movie.Overview);
-                                command1.Parameters.AddWithValue("@URL", movie.Url);
-                                command1.Parameters.AddWithValue("@DATE", movie.Date);
-                                command1.ExecuteNonQuery();
-                            }
-                        }
+                        command.Parameters.AddWithValue("@LOGO", movie.Logo);
+                        command.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
+                        command.Parameters.AddWithValue("OVERVIEW", movie.Overview);
+                        command.Parameters.AddWithValue("@URL", movie.Url);
+                        command.Parameters.AddWithValue("@DATE", movie.Date);
+                        command.ExecuteNonQuery();
                     }
                     connection.Close();
                 }

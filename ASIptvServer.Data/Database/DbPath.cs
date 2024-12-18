@@ -2,8 +2,6 @@
 using ASIptvServer.Api.Interfaces;
 namespace ASIptvServer.Data.Database
 {
-    
-
     public class DbPath : IDbPath
     {
         private readonly IVerification _verification;

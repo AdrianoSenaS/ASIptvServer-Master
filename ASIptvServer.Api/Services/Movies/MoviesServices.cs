@@ -14,7 +14,9 @@ namespace ASIptvServer.Api.Services.Movies
         public readonly ITMDBMovie _itmdbMovie;
         private readonly IMovieService _movieService;
         private readonly IVerification _verification;
-        public MoviesServices(ITMDBMovie itmdbMovie, IMovieService movieService, IVerification verification)
+        public MoviesServices(ITMDBMovie itmdbMovie,
+            IMovieService movieService,
+            IVerification verification)
         {
             _itmdbMovie = itmdbMovie;
             _movieService = movieService;
@@ -28,22 +30,32 @@ namespace ASIptvServer.Api.Services.Movies
                 builder.AddProvider(new FileLoggerProvider(_verification.Verification().PathTemp + "Movie.log"));
             });
             ILogger logger = loggerFactory.CreateLogger("Filmes M3U");
-            string imagTdbm = "https://image.tmdb.org/t/p/w500";
+            string ImageTMDB = "https://image.tmdb.org/t/p/w500";
             MovieModel movie = new MovieModel();
             CategoriesModel categories = new CategoriesModel();
-            var result = _itmdbMovie.GetMovie(naming.Name, naming.Year);
-            if (result.Title != null)
+            var result = Search(naming.Name, naming.Year);
+            if (result.Title!= string.Empty)
             {
-                
-                logger.LogInformation("Adicionando  Filme: " +result.Title);
                 movie.Title = result.Title;
-                movie.Logo = imagTdbm + result.poster_path;
+                movie.Logo = ImageTMDB+ result.poster_path;
+                movie.Overview = result.Overview;
             }
             else
             {
-                logger.LogWarning("Adicionado Filme sem consulta no TMDB: "+m3U.Name);   
-                movie.Title = m3U.Name;
-                movie.Logo = m3U.Logo;
+                result = Search(naming.Name, string.Empty);
+                if (result.Title != string.Empty)
+                {
+                    movie.Title = result.Title;
+                    movie.Logo = ImageTMDB + result.poster_path;
+                    movie.Overview = result.Overview;
+                }
+                else
+                {
+                    movie.Title = naming.Name;
+                    movie.Logo = m3U.Logo;
+                    movie.Overview = string.Empty;
+                    logger.LogWarning("Adicionando  Filme sem consulta ao TMDB: " + movie.Title);
+                }
             }
             if (m3U.Categories != null)
             {
@@ -52,17 +64,38 @@ namespace ASIptvServer.Api.Services.Movies
             }
             else
             {
-                logger.LogWarning("Cateoria não encontrada: " + m3U.Categories);
                 logger.LogInformation("Adicionando Categoria: Sem categoria");
                 movie.Categories = "Sem categoria";
                 categories.Category = "Sem categoria";
             }
-            movie.Overview = result.Overview;
+            movie.Id = m3U.Id;
             movie.Url = m3U.Url;
             movie.Date = naming.Year;
             _movieService.SetMovies(movie);
             _movieService.SetCategoryMovies(categories);
-            logger.LogInformation("Fime adicionado com sucesso! "+ movie.Title);
+            logger.LogInformation("Adicionando  Filme: " + movie.Title);
+        }
+        private MovieTMDBModel Search(string name, string year)
+        {
+            MovieTMDBModel movie = new MovieTMDBModel();
+            var movieTMDB = _itmdbMovie.GetMovie(name, year);
+            if (movieTMDB != null) 
+            {
+                movie = movieTMDB;
+            }
+            if (movieTMDB.original_title == name)
+            {
+               movie.Title = movieTMDB.original_title;
+            }
+            if (movieTMDB.Title == name)
+            {
+                movie.Title = name;
+            }
+            else
+            {
+                movie.Title = string.Empty;
+            }
+            return movie;
         }
     }
 }

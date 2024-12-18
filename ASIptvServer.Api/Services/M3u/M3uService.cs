@@ -8,7 +8,6 @@ using ASIptvServer.Api.Services.Tv;
 
 namespace ASIptvServer.Api.Services.M3u
 {
-
     public class M3uService : IM3uService
     {
         private readonly ISeriesService _seriesService;
@@ -54,7 +53,6 @@ namespace ASIptvServer.Api.Services.M3u
         }
         public void UpdateM3uUrl(string url)
         {
-
             M3Uurl m3Uurl = new M3Uurl(url);
             var dt = M3UList.M3Uurl(m3Uurl);
             foreach (var item in dt.Result)
@@ -84,7 +82,6 @@ namespace ASIptvServer.Api.Services.M3u
                 }
             }
         }
-
         private int CountM3u(string pathM3u)
         {
             int id = 0;
@@ -92,9 +89,10 @@ namespace ASIptvServer.Api.Services.M3u
             var dt = M3UList.M3uPath(m3UPath);
             foreach (var item in dt.Result)
             {
+                Console.WriteLine("Verificando Lista");
                 id++;
-                item.Id = id;
             }
+            Console.WriteLine(id+ " itens encontrado");
             return id;
         }
     }

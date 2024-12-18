@@ -88,21 +88,14 @@ namespace ASIptvServer.Data.Data
                 using(SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
-                    using (SQLiteCommand commandSearch = new SQLiteCommand(Sql.SelectTVCount, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.InsertTV, connection))
                     {
-                        commandSearch.Parameters.AddWithValue("TITLE", tvModel.Title);
-                        var count = Convert.ToInt32(commandSearch.ExecuteScalar());
-                        if (count == 0)
-                        {
-                            using (SQLiteCommand command = new SQLiteCommand(Sql.InsertTV, connection))
-                            {
-                                command.Parameters.AddWithValue("TITLE", tvModel.Title);
-                                command.Parameters.AddWithValue("LOGO", tvModel.Logo);
-                                command.Parameters.AddWithValue("CATEGORIES", tvModel.Categories);
-                                command.Parameters.AddWithValue("URL", tvModel.Url);
-                                command.ExecuteNonQuery();
-                            }
-                        }
+                        command.Parameters.AddWithValue("@ID", tvModel.Id);
+                        command.Parameters.AddWithValue("@TITLE", tvModel.Title);
+                        command.Parameters.AddWithValue("@LOGO", tvModel.Logo);
+                        command.Parameters.AddWithValue("@CATEGORIES", tvModel.Categories);
+                        command.Parameters.AddWithValue("@URL", tvModel.Url);
+                        command.ExecuteNonQuery();
                     }
                     connection.Close();
                 }
@@ -155,7 +148,7 @@ namespace ASIptvServer.Data.Data
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.SelectCategoriesTV, connection))
                     {
-                        command.Parameters.AddWithValue("CATEGORIES", category);
+                        command.Parameters.AddWithValue("@CATEGORIES", category);
                         using (SQLiteDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -188,14 +181,14 @@ namespace ASIptvServer.Data.Data
                     connection.Open();
                     using (SQLiteCommand commandSearch = new SQLiteCommand(Sql.SelectCategoriesTVCount, connection))
                     {
-                        commandSearch.Parameters.AddWithValue("CATEGORY", categories.Category);
+                        commandSearch.Parameters.AddWithValue("@CATEGORY", categories.Category);
                         var count = Convert.ToInt32(commandSearch.ExecuteScalar());
                         if (count == 0)
                         {
                             using (SQLiteCommand command = new SQLiteCommand(Sql.InsertCategoriesTV, connection))
                             {
-                                command.Parameters.AddWithValue("CATEGORY", categories.Category);
-                                command.Parameters.AddWithValue("SUBCATEGORY", "Tv");
+                                command.Parameters.AddWithValue("@CATEGORY", categories.Category);
+                                command.Parameters.AddWithValue("@SUBCATEGORY", "Tv");
                                 command.ExecuteNonQuery();
                             }
                         }

@@ -15,8 +15,8 @@ namespace ASIptvServer.Data.Database
             using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
             {
                 connection.Open();
-                string sql = @"CREATE TABLE IF NOT EXISTS MOVIES (ID INTEGER PRIMARY KEY, TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE);
-                                    CREATE TABLE IF NOT EXISTS TV (ID INTEGER PRIMARY KEY, TITLE, LOGO, CATEGORIES, URL);
+                string sql = @"CREATE TABLE IF NOT EXISTS MOVIES (ID INTEGER, TITLE, LOGO, CATEGORIES, OVERVIEW, URL, DATE);
+                                    CREATE TABLE IF NOT EXISTS TV (ID INTEGER, TITLE, LOGO, CATEGORIES, URL);
                                     CREATE TABLE IF NOT EXISTS CATEGORIES (ID INTEGER PRIMARY KEY, CATEGORY, SUBCATEGORY);
                                     CREATE TABLE IF NOT EXISTS SERIES (ID INTEGER PRIMARY KEY, TITLE, LOGO, CATEGORIES, OVERVIEW);
                                     CREATE TABLE IF NOT EXISTS SEASON (ID INTEGER PRIMARY KEY, TITLE, SEASON);

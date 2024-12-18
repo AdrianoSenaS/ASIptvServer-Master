@@ -10,6 +10,7 @@ using ASIptvServer.TMDB;
 using ASIptvServer;
 using ASIptvServer.Api.Services.IO;
 using ASIptvServer.Api.Services.Tv;
+using RestSharp;
 
 var builder = WebApplication.CreateBuilder(args);
 // Registrando a configuração do Swagger que está na classe separada
