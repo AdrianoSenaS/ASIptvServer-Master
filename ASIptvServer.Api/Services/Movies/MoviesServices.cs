@@ -36,6 +36,7 @@ namespace ASIptvServer.Api.Services.Movies
             var result = Search(naming.Name, naming.Year);
             if (result.Title!= string.Empty)
             {
+                movie.IdTmdb = result.Id;
                 movie.Title = result.Title;
                 movie.Logo = ImageTMDB+ result.poster_path;
                 movie.Overview = result.Overview;
@@ -45,6 +46,7 @@ namespace ASIptvServer.Api.Services.Movies
                 result = Search(naming.Name, string.Empty);
                 if (result.Title != string.Empty)
                 {
+                    movie.IdTmdb = result.Id;
                     movie.Title = result.Title;
                     movie.Logo = ImageTMDB + result.poster_path;
                     movie.Overview = result.Overview;
@@ -68,7 +70,7 @@ namespace ASIptvServer.Api.Services.Movies
                 movie.Categories = "Sem categoria";
                 categories.Category = "Sem categoria";
             }
-            movie.Id = m3U.Id;
+            movie.IdMovie = m3U.Id;
             movie.Url = m3U.Url;
             movie.Date = naming.Year;
             _movieService.SetMovies(movie);

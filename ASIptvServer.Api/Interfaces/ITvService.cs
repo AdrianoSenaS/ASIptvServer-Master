@@ -5,7 +5,7 @@ namespace ASIptvServer.Api.Interfaces
     public interface ITvService
     {
         List<TvModel> GetTv();
-        List<TvModel> GetTvId(int id);
+        TvModel GetTvId(int id);
         void SetTv(TvModel tvModel);
         List<CategoriesModel> GetCategoryTv();
         List<TvModel> GetCategoryTvId(string category);

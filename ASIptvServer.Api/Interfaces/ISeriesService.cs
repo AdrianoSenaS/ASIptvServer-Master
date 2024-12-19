@@ -5,7 +5,7 @@ namespace ASIptvServer.Api.Interfaces
     public interface ISeriesService
     {
         List<SeriesModel> GetSeries();
-        List<SeriesModel> GetDbSeriesId(int id);
+        SeriesModel GetDbSeriesId(int id);
         void SetSeries(SeriesModel series);
         List<CategoriesModel> GetCateoriesSeries();
         List<SeriesModel> GetCategoriesSeriesId(string category);

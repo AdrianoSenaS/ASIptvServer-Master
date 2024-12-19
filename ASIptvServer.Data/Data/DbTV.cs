@@ -2,6 +2,7 @@
 using ASIptvServer.Data.Database;
 using ASIptvServer.Api.Interfaces;
 using ASIptvServer.Api.Models;
+using System.Security.Policy;
 
 namespace ASIptvServer.Data.Data
 {
@@ -46,11 +47,11 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public List<TvModel> GetTvId(int id) 
+        public TvModel GetTvId(int id) 
         {
             try
             {
-                var tv = new List<TvModel>();
+                var tv = new TvModel();
                 using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
@@ -61,14 +62,11 @@ namespace ASIptvServer.Data.Data
                         {
                             while (reader.Read())
                             {
-                                tv.Add(new TvModel
-                                {
-                                    Id = reader.GetInt32(0),
-                                    Title = reader.GetString(1),
-                                    Logo = reader.GetString(2),
-                                    Categories = reader.GetString(3),
-                                    Url = reader.GetString(4)
-                                });
+                                tv.Id = reader.GetInt32(0);
+                                tv.Title = reader.GetString(1);
+                                tv.Logo = reader.GetString(2);
+                                tv.Categories = reader.GetString(3);
+                                tv.Url = reader.GetString(4);
                             }
                         }
                     }
@@ -90,7 +88,7 @@ namespace ASIptvServer.Data.Data
                     connection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(Sql.InsertTV, connection))
                     {
-                        command.Parameters.AddWithValue("@ID", tvModel.Id);
+                       
                         command.Parameters.AddWithValue("@TITLE", tvModel.Title);
                         command.Parameters.AddWithValue("@LOGO", tvModel.Logo);
                         command.Parameters.AddWithValue("@CATEGORIES", tvModel.Categories);

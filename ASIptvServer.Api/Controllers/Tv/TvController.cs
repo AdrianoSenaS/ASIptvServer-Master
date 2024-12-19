@@ -22,7 +22,7 @@ namespace ASIptvServer.Api.Controllers.Tv
         }
 
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<TvModel>> GetTvId(int id)
+        public ActionResult<TvModel> GetTvId(int id)
         {
             return _tvService.GetTvId(id);
         }
