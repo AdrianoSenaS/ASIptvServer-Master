@@ -4,6 +4,8 @@
     {
         public MovieModel() { }
         public int Id { get; set; }
+        public int IdMovie {  get; set; }
+        public int IdTmdb {  get; set; }
         public string Title { get; set; }
         public string Logo { get; set; }
         public string Categories { get; set; }

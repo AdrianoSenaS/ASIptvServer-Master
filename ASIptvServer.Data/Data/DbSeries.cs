@@ -39,9 +39,9 @@ namespace ASIptvServer.Data.Data
             }
             return seriesModels;
         }
-        public List<SeriesModel> GetDbSeriesId(int id)
+        public SeriesModel GetDbSeriesId(int id)
         {
-            List<SeriesModel> seriesModels = new List<SeriesModel>();
+            SeriesModel seriesModels = new SeriesModel();
             using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
             {
                 connection.Open();
@@ -52,14 +52,11 @@ namespace ASIptvServer.Data.Data
                     {
                         while (reader.Read())
                         {
-                            seriesModels.Add(new SeriesModel 
-                            {
-                                Id= reader.GetInt32(0),
-                                Title = reader.GetString(1),
-                                Logo = reader.GetString(2),
-                                Categories = reader.GetString(3),
-                                Overview = reader.GetString(4),
-                            });
+                            seriesModels.Id = reader.GetInt32(0);
+                            seriesModels.Title = reader.GetString(1);
+                            seriesModels.Logo = reader.GetString(2);
+                            seriesModels.Categories = reader.GetString(3);
+                            seriesModels.Overview = reader.GetString(4);
                         }
                     }
                 }

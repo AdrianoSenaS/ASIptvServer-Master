@@ -15,12 +15,13 @@
 }
 public class MovieTMDBModel
 {
+    public MovieTMDBModel() { }
     public bool Adult { get; set; }
     public string backdrop_path { get; set; }
     public List<int> GenreIds { get; set; }
     public int Id { get; set; }
     public string OriginalLanguage { get; set; }
-    public string OriginalTitle { get; set; }
+    public string original_title { get; set; }
     public string Overview { get; set; }
     public double Popularity { get; set; }
     public string poster_path { get; set; }
@@ -37,7 +38,7 @@ public class MovieTMDBModel
         this.GenreIds = genreIds;
         this.Id = id;
         this.OriginalLanguage = originalLanguage;
-        this.OriginalTitle = originalTitle;
+        this.original_title = originalTitle;
         this.Overview = overview;
         this.Popularity = popularity;
         this.poster_path = posterPath;
@@ -46,8 +47,5 @@ public class MovieTMDBModel
         this.Video = video;
         this.VoteAverage = voteAverage;
         this.VoteCount = voteCount;
-    }
-    public MovieTMDBModel()
-    {
     }
 }

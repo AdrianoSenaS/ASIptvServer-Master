@@ -5,10 +5,10 @@ namespace ASIptvServer.Naming.Renamber
 {
     public class Renamber
     {
-        public static string EmptyYear { get; set; }
-        public static string Name { get; set; }
-        public static Match Serie { get; set; }
-        public static Match Year { get; set; }
+        public static string? EmptyYear { get; set; }
+        public static string? Name { get; set; }
+        public static Match? Serie { get; set; }
+        public static Match? Year { get; set; }
      
         public static bool IsSerie { get; set; }
 

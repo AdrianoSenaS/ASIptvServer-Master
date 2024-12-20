@@ -24,7 +24,7 @@ namespace ASIptvServer.Api.Controllers.Movie
         }
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<MovieModel>> GetMoviesId(int id)
+        public ActionResult<MovieModel> GetMoviesId(int id)
         {
             var movies = _movieService.GetMoviesId(id);
             return movies;

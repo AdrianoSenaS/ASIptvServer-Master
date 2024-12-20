@@ -20,9 +20,9 @@ namespace ASIptvServer.Api.Controllers.Series
             return series;
         }
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<SeriesModel>> GetSeriesId(int id)
+        public ActionResult<SeriesModel> GetSeriesId(int id)
         {
-            List<SeriesModel> series = _seriesService.GetDbSeriesId(id);
+            SeriesModel series = _seriesService.GetDbSeriesId(id);
             return series;
         }
         [HttpGet("Categories")]

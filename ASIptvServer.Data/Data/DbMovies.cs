@@ -2,10 +2,8 @@
 using ASIptvServer.Data.Database;
 using ASIptvServer.Api.Models;
 using ASIptvServer.Api.Interfaces;
-
 namespace ASIptvServer.Data.Data
 {
-    
     public class DbMovies : IMovieService
     {
         private readonly IDbPath _dbPath;
@@ -30,12 +28,14 @@ namespace ASIptvServer.Data.Data
                                 movies.Add(new MovieModel()
                                 {
                                     Id = reader.GetInt32(0),
-                                    Title = reader.GetString(1),
-                                    Logo = reader.GetString(2),
-                                    Categories = reader.GetString(3),
-                                    Overview = reader.GetString(4),
-                                    Url = reader.GetString(5),
-                                    Date = reader.GetString(6)
+                                    IdMovie = reader.GetInt32(1),
+                                    IdTmdb = reader.GetInt32(2),
+                                    Title = reader.GetString(3),
+                                    Logo = reader.GetString(4),
+                                    Categories = reader.GetString(5),
+                                    Overview = reader.GetString(6),
+                                    Url = reader.GetString(7),
+                                    Date = reader.GetString(8)
                                 });
                             }
                         }
@@ -48,11 +48,11 @@ namespace ASIptvServer.Data.Data
                 throw new Exception(ex.Message);
             }
         }
-        public List<MovieModel> GetMoviesId(int id)
+        public MovieModel GetMoviesId(int id)
         {
             try
             {
-                List<MovieModel> movies = new List<MovieModel>();
+                MovieModel movies = new MovieModel();
                 using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
@@ -63,16 +63,15 @@ namespace ASIptvServer.Data.Data
                         {
                             while (reader.Read())
                             {
-                                movies.Add(new MovieModel()
-                                {
-                                    Id = reader.GetInt32(0),
-                                    Title = reader.GetString(1),
-                                    Logo = reader.GetString(2),
-                                    Categories = reader.GetString(3),
-                                    Overview = reader.GetString(4),
-                                    Url = reader.GetString(5),
-                                    Date = reader.GetString(6)
-                                });
+                                movies.Id = reader.GetInt32(0);
+                                movies.IdMovie = reader.GetInt32(1);
+                                movies.IdTmdb = reader.GetInt32(2);
+                                movies.Title = reader.GetString(3);
+                                movies.Logo = reader.GetString(4);
+                                movies.Categories = reader.GetString(5);
+                                movies.Overview = reader.GetString(6);
+                                movies.Url = reader.GetString(7);
+                                movies.Date = reader.GetString(8);
                             }
                         }
                     }
@@ -91,23 +90,18 @@ namespace ASIptvServer.Data.Data
                 using (SQLiteConnection connection = new SQLiteConnection(_dbPath.Local()))
                 {
                     connection.Open();
-                    using (SQLiteCommand command = new SQLiteCommand(Sql.SelectMoviesCount, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(Sql.InsertMovies, connection))
                     {
+                        
+                        command.Parameters.AddWithValue("@IDMOVIE", movie.IdMovie);
+                        command.Parameters.AddWithValue("@IDTMB", movie.IdTmdb);
                         command.Parameters.AddWithValue("@TITLE", movie.Title);
-                        var count = Convert.ToInt32(command.ExecuteScalar());
-                        if (count == 0)
-                        {
-                            using (SQLiteCommand command1 = new SQLiteCommand(Sql.InsertMovies, connection))
-                            {
-                                command1.Parameters.AddWithValue("@TITLE", movie.Title);
-                                command1.Parameters.AddWithValue("@LOGO", movie.Logo);
-                                command1.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
-                                command1.Parameters.AddWithValue("OVERVIEW", movie.Overview);
-                                command1.Parameters.AddWithValue("@URL", movie.Url);
-                                command1.Parameters.AddWithValue("@DATE", movie.Date);
-                                command1.ExecuteNonQuery();
-                            }
-                        }
+                        command.Parameters.AddWithValue("@LOGO", movie.Logo);
+                        command.Parameters.AddWithValue("@CATEGORIES", movie.Categories);
+                        command.Parameters.AddWithValue("OVERVIEW", movie.Overview);
+                        command.Parameters.AddWithValue("@URL", movie.Url);
+                        command.Parameters.AddWithValue("@DATE", movie.Date);
+                        command.ExecuteNonQuery();
                     }
                     connection.Close();
                 }
@@ -165,12 +159,14 @@ namespace ASIptvServer.Data.Data
                                 movies.Add(new MovieModel()
                                 {
                                     Id = reader.GetInt32(0),
-                                    Title = reader.GetString(1),
-                                    Logo = reader.GetString(2),
-                                    Categories = reader.GetString(3),
-                                    Overview = reader.GetString(4),
-                                    Url = reader.GetString(5),
-                                    Date = reader.GetString(6)
+                                    IdMovie = reader.GetInt32(1),
+                                    IdTmdb = reader.GetInt32(2),
+                                    Title = reader.GetString(3),
+                                    Logo = reader.GetString(4),
+                                    Categories = reader.GetString(5),
+                                    Overview = reader.GetString(6),
+                                    Url = reader.GetString(7),
+                                    Date = reader.GetString(8)
                                 });
                             }
                         }
