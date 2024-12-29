@@ -17,7 +17,7 @@ namespace ASIptvServer.TMDB
             try
             {
                 apiHeaders.Options = $"https://api.themoviedb.org/3/search/movie?query={name}&include_adult=true&language=pt-BR&page=1&year={year}";
-                apiHeaders.Token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMWEzMzM5Yjg1MGE0ZDI4NDNiMjU5ZmI5ZWJiYTNmZiIsIm5iZiI6MTcyNzIxNjM0NC42OCwic3ViIjoiNjZmMzNhZDg1MDUxMzI4MzBlMjE2NDFhIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.ymyuM-JNxbypJmoe1ByMoONM24elHMV_053-HYEQxl0";
+                apiHeaders.Token = "Bearer ";
                 apiHeaders.HeaderContentType = "application/json";
                 var api = TMDBApi.Api(apiHeaders);
                 var request = api.restRequest;
