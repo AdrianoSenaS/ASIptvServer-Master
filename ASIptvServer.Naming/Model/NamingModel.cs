@@ -1,22 +1,22 @@
-﻿namespace ASIptvServer.Naming
+﻿namespace ASIptvServer.Naming.Model
 {
-    public class Naming
+    public class NamingModel
     {
-        public Naming() { }
+        public NamingModel() { }
 
         public string Name { get; set; }
         public string Lang { get; set; }
         public string Year { get; set; }
         public bool IsSerie { get; set; }
-        public Naming(string name, 
-            string lag, 
-            string year, 
+        public NamingModel(string name,
+            string lag,
+            string year,
             bool isSerie)
         {
-            this.Name = name;
-            this.Lang = lag;
-            this.Year = year;
-            this.IsSerie = isSerie;
+            Name = name;
+            Lang = lag;
+            Year = year;
+            IsSerie = isSerie;
 
         }
     }
