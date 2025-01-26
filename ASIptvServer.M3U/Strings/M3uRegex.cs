@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ASIptvServer.M3U
+namespace ASIptvServer.M3U.Strings
 {
     public class M3uRegex
     {

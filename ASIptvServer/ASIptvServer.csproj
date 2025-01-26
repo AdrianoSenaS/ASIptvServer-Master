@@ -17,6 +17,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Splash-_2_.ico" />
   </ItemGroup>
 
@@ -24,10 +31,6 @@
     <ProjectReference Include="..\ASIptvServer.Api\ASIptvServer.Api.csproj" />
     <ProjectReference Include="..\ASIptvServer.Data\ASIptvServer.Data.csproj" />
     <ProjectReference Include="..\ASIptvServer.IO\ASIptvServer.IO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\app\" />
   </ItemGroup>
 
   <ItemGroup>
