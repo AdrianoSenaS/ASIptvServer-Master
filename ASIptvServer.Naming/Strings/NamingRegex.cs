@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
 
-namespace ASIptvServer.Naming.Strings
+namespace ASMedia.Naming.Strings
 {
     public class NamingRegex
     {

@@ -28,12 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ASIptvServer.Api\ASIptvServer.Api.csproj" />
-    <ProjectReference Include="..\ASIptvServer.Data\ASIptvServer.Data.csproj" />
-    <ProjectReference Include="..\ASIptvServer.IO\ASIptvServer.IO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

@@ -1,7 +1,7 @@
-﻿using ASIptvServer.Naming.Model;
-using ASIptvServer.Naming.Interfaces;
+﻿using ASMedia.Naming.Model;
+using ASMedia.Naming.Interfaces;
 
-namespace ASIptvServer.Naming.Application
+namespace ASMedia.Naming.Application
 {
     public class Naming
     {

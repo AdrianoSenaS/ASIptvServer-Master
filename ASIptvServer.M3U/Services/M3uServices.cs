@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using ASIptvServer.M3U.Interfaces;
-using ASIptvServer.M3U.Model;
-using ASIptvServer.M3U.Strings;
+using ASMedia.M3U.Interfaces;
+using ASMedia.M3U.Model;
+using ASMedia.M3U.Strings;
 
-namespace ASIptvServer.M3U.Services
+namespace ASMedia.M3U.Services
 {
     public class M3uServices : IM3uServices
     {

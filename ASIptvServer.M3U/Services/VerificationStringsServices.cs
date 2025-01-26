@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using ASIptvServer.M3U.Interfaces;
+using ASMedia.M3U.Interfaces;
 
-namespace ASIptvServer.M3U.Services
+namespace ASMedia.M3U.Services
 {
     public class VerificationStringsServices : IVerificationStrings
     {

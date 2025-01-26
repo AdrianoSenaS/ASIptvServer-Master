@@ -1,6 +1,6 @@
-﻿using ASIptvServer.Naming.Model;
+﻿using ASMedia.Naming.Model;
 
-namespace ASIptvServer.Naming.Interfaces
+namespace ASMedia.Naming.Interfaces
 {
     public interface INamingString
     {

@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using ASIptvServer.Naming.Interfaces;
-using ASIptvServer.Naming.Model;
-using ASIptvServer.Naming.Strings;
+using ASMedia.Naming.Interfaces;
+using ASMedia.Naming.Model;
+using ASMedia.Naming.Strings;
 
-namespace ASIptvServer.Naming.Services
+namespace ASMedia.Naming.Services
 {
     public class NamingString : INamingString
     {

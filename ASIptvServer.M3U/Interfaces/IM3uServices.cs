@@ -1,6 +1,6 @@
-﻿using ASIptvServer.M3U.Model;
+﻿using ASMedia.M3U.Model;
 
-namespace ASIptvServer.M3U.Interfaces
+namespace ASMedia.M3U.Interfaces
 {
     public interface IM3uServices
     {

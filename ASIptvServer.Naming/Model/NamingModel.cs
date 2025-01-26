@@ -1,4 +1,4 @@
-﻿namespace ASIptvServer.Naming.Model
+﻿namespace ASMedia.Naming.Model
 {
     public class NamingModel
     {

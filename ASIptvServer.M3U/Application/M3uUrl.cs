@@ -1,7 +1,7 @@
-﻿using ASIptvServer.M3U.Interfaces;
-using ASIptvServer.M3U.Model;
+﻿using ASMedia.M3U.Interfaces;
+using ASMedia.M3U.Model;
 
-namespace ASIptvServer.M3U
+namespace ASMedia.M3U
 {
     public class M3uUrl
     {

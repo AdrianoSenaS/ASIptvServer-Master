@@ -1,4 +1,4 @@
-﻿namespace ASIptvServer.M3U.Model
+﻿namespace ASMedia.M3U.Model
 {
     public class M3uUrlModel
     {

@@ -3,21 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASIptvServer", "ASIptvServer\ASIptvServer.csproj", "{45774935-F1C9-496E-BB41-15521DCE4C6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMedia.Server", "ASIptvServer\ASMedia.Server.csproj", "{45774935-F1C9-496E-BB41-15521DCE4C6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASIptvServer.Api", "ASIptvServer.Api\ASIptvServer.Api.csproj", "{A5F84BEF-2B0F-404B-B066-8AD66511B8B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMedia.Naming", "ASIptvServer.Naming\ASMedia.Naming.csproj", "{9E6D317C-7817-42DD-8DBB-1288BF65D412}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASIptvServer.Data", "ASIptvServer.Data\ASIptvServer.Data.csproj", "{51AD93B0-FDB7-49CC-AB75-7C4B512A7047}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMedia.M3U", "ASIptvServer.M3U\ASMedia.M3U.csproj", "{5AE30B63-43DE-434A-A31E-EA83E521B887}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASIptvServer.Naming", "ASIptvServer.Naming\ASIptvServer.Naming.csproj", "{9E6D317C-7817-42DD-8DBB-1288BF65D412}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASIptvServer.TMDB", "ASIptvServer.TMDB\ASIptvServer.TMDB.csproj", "{5B6A83FE-041F-4412-B729-B66AEBA24890}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASIptvServer.M3U", "ASIptvServer.M3U\ASIptvServer.M3U.csproj", "{5AE30B63-43DE-434A-A31E-EA83E521B887}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASIptvServer.IO", "ASIptvServer.IO\ASIptvServer.IO.csproj", "{B3BFCBDD-B082-476F-AF48-A9919053F971}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASIptvServer.System", "ASIptvServer.System\ASIptvServer.System.csproj", "{AAA952DA-E0C4-40B3-8681-68095CF91C76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASMedia.Data", "ASIptvServer.Data\ASMedia.Data.csproj", "{730F884F-29CF-4556-8AEC-111DDB19E72F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,34 +21,18 @@ Global
 		{45774935-F1C9-496E-BB41-15521DCE4C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45774935-F1C9-496E-BB41-15521DCE4C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45774935-F1C9-496E-BB41-15521DCE4C6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5F84BEF-2B0F-404B-B066-8AD66511B8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5F84BEF-2B0F-404B-B066-8AD66511B8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5F84BEF-2B0F-404B-B066-8AD66511B8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5F84BEF-2B0F-404B-B066-8AD66511B8B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51AD93B0-FDB7-49CC-AB75-7C4B512A7047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51AD93B0-FDB7-49CC-AB75-7C4B512A7047}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51AD93B0-FDB7-49CC-AB75-7C4B512A7047}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51AD93B0-FDB7-49CC-AB75-7C4B512A7047}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E6D317C-7817-42DD-8DBB-1288BF65D412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E6D317C-7817-42DD-8DBB-1288BF65D412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6D317C-7817-42DD-8DBB-1288BF65D412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6D317C-7817-42DD-8DBB-1288BF65D412}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B6A83FE-041F-4412-B729-B66AEBA24890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B6A83FE-041F-4412-B729-B66AEBA24890}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B6A83FE-041F-4412-B729-B66AEBA24890}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B6A83FE-041F-4412-B729-B66AEBA24890}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AE30B63-43DE-434A-A31E-EA83E521B887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AE30B63-43DE-434A-A31E-EA83E521B887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AE30B63-43DE-434A-A31E-EA83E521B887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AE30B63-43DE-434A-A31E-EA83E521B887}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3BFCBDD-B082-476F-AF48-A9919053F971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3BFCBDD-B082-476F-AF48-A9919053F971}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3BFCBDD-B082-476F-AF48-A9919053F971}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3BFCBDD-B082-476F-AF48-A9919053F971}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAA952DA-E0C4-40B3-8681-68095CF91C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAA952DA-E0C4-40B3-8681-68095CF91C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAA952DA-E0C4-40B3-8681-68095CF91C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAA952DA-E0C4-40B3-8681-68095CF91C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

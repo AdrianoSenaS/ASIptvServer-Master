@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ASIptvServer.M3U.Interfaces
+namespace ASMedia.M3U.Interfaces
 {
    
     public interface IVerificationStrings

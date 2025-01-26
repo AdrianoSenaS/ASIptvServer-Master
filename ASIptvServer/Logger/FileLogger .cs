@@ -1,4 +1,4 @@
-﻿namespace ASIptvServer
+﻿namespace ASMedia.Server.Logger
 {
     public class FileLogger : ILogger
     {
