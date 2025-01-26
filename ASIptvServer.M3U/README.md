@@ -1,8 +1,8 @@
-﻿# ASIptvServer.M3U
+﻿# ASMedia.M3U
 
-###### ASIptvServer.M3U uma biblioteca C# que fornece funcionalidades para ler listas m3u .
+# ASMedia.M3U uma biblioteca C# que fornece funcionalidades para ler listas m3u .
 
-## Funcionalidades
+# Funcionalidades
 * Ler varios formatos de listas
 * faz download da url e salva em arquivo m3u
 * Separa no logo e url
@@ -10,10 +10,10 @@
 
 
 
-## Exemplo de Código com arquivos m3u
+# Exemplo de Código com arquivos m3u
 
 ```
-using ASIptvServer.M3U;
+using ASMedia.M3U;
 
 class Program
 {
@@ -37,10 +37,10 @@ class Program
 }
 
 ```
-## Exemplo de Código com url m3u
+# Exemplo de Código com url m3u
 
 ```
-using ASIptvServer.M3U;
+using ASMedia.M3U;
 
 class Program
 {
