@@ -1,20 +1,19 @@
 ﻿using System.Text.RegularExpressions;
-using ASMedia.Naming.Interfaces;
 using ASMedia.Naming.Model;
 using ASMedia.Naming.Strings;
 
 namespace ASMedia.Naming.Services
 {
-    public class NamingString : INamingString
+    public class NamingString 
     {
-        private string? EmptyYear { get; set; }
-        private string? Name { get; set; }
-        private Match? Serie { get; set; }
-        private Match? Year { get; set; }
-        private bool IsSerie { get; set; }
+        private  static string? EmptyYear { get; set; }
+        private static string? Name { get; set; }
+        private static Match? Serie { get; set; }
+        private static Match? Year { get; set; }
+        private static bool IsSerie { get; set; }
 
-        public NamingModel Naming = new NamingModel();
-        public NamingModel SetNaming(NamingPathModel name)
+        private static NamingModel Naming = new NamingModel();
+        public static NamingModel SetNaming(NamingPathModel name)
         {
             try
             {

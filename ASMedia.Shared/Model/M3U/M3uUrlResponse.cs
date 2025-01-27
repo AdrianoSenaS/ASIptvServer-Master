@@ -1,6 +1,4 @@
-﻿
-
-namespace ASMedia.Shared.M3U
+﻿namespace ASMedia.Shared.Model.M3U
 {
     public class M3uUrlResponse
     {

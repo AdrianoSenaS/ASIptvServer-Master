@@ -1,13 +1,12 @@
 ﻿using System.Text.RegularExpressions;
-using ASMedia.M3U.Interfaces;
 using ASMedia.M3U.Model;
 using ASMedia.M3U.Strings;
 
 namespace ASMedia.M3U.Services
 {
-    public class M3uServices : IM3uServices
+    public class M3uServices 
     {
-        public string Verification(Match formatVideo, Match formatSeries, Match FormatRadio)
+        public static string Verification(Match formatVideo, Match formatSeries, Match FormatRadio)
         {
             if (formatVideo.Success && !formatSeries.Success && !FormatRadio.Success)
             {
@@ -23,7 +22,7 @@ namespace ASMedia.M3U.Services
             }
             return "other";
         }
-        public M3uModel M3U(string[] lines)
+        public static M3uModel M3U(string[] lines)
         {
             M3uModel m3Us = new M3uModel();
             try

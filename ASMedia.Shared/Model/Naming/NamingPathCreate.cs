@@ -1,5 +1,4 @@
-﻿
-namespace ASMedia.Shared.Naming
+﻿namespace ASMedia.Shared.Model.Naming
 {
     public class NamingPathCreate
     {

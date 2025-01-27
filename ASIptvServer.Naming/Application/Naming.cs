@@ -1,25 +1,20 @@
 ﻿using ASMedia.Naming.Model;
-using ASMedia.Naming.Interfaces;
-using ASMedia.Shared.Naming;
+using ASMedia.Naming.Services;
+using ASMedia.Shared.Model.Naming;
+using ASMedia.Shared.Interfaces.Naming;
 
 namespace ASMedia.Naming.Application
 {
-    public class Naming
+    public class Naming : INaming
     {
-        private readonly INamingString _name;
-        public Naming(INamingString naming)
-        {
-            _name = naming;
-        }
-
-        public NamingResponse  GetNaming(NamingPathCreate naming)
+        public NamingResponse GetNaming(NamingPathCreate naming)
         {
             if(naming != null)
             {
                 NamingPathModel model = new NamingPathModel();
                 NamingResponse response = new NamingResponse();
                 model.Path = naming.Path;
-                NamingModel namingModel = _name.SetNaming(model);
+                NamingModel namingModel = NamingString.SetNaming(model);
                 response.Name = namingModel.Name;
                 response.Lang = namingModel.Lang;
                 response.Year = namingModel.Year;
