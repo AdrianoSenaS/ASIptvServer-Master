@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Application\Movies\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Application\" />
     <Folder Include="Services\" />
     <Folder Include="Application\Users\" />
