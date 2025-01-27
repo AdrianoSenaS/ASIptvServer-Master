@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ASMedia.Data.Database.Db.Users
 {
-    public class UsersService
+    public class UsersDb
     {
         public async Task<string> AddUser(AppDbContext DbContext, UsersModel Users)
         {

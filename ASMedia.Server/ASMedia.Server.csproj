@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>Splash-_2_.ico</ApplicationIcon>
+    <ApplicationIcon>Src\Icons\Log-As-Media.ico</ApplicationIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Splash-_2_.ico" />
+    <Content Include="Src\Icons\Log-As-Media.ico" />
   </ItemGroup>
 
   <ItemGroup>
