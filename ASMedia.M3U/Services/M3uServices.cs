@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using ASMedia.M3U.Model;
+using ASMedia.Shared.Model;
 using ASMedia.M3U.Strings;
+using ASMedia.Shared.Model.M3U;
 
 namespace ASMedia.M3U.Services
 {
@@ -22,9 +23,9 @@ namespace ASMedia.M3U.Services
             }
             return "other";
         }
-        public static M3uModel M3U(string[] lines)
+        public static M3UResponse M3U(string[] lines)
         {
-            M3uModel m3Us = new M3uModel();
+            M3UResponse m3Us = new M3UResponse();
             try
             {
                 int Id = 0;
@@ -33,7 +34,7 @@ namespace ASMedia.M3U.Services
                 {
                     if (lines[i].StartsWith("#EXTINF"))
                     {
-                        var m3U = new M3uModel();
+                        var m3U = new M3UResponse();
                         Id++;
                         m3U.Serie = false;
                         m3U.Tv = false;

@@ -1,16 +1,17 @@
-﻿using ASMedia.Data.Model.Users;
+﻿using ASMedia.Shared.Model;
+using ASMedia.Shared.Model.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASMedia.Data.Database.DataDbContext
+namespace ASMedia.Data.DataDbContext
 {
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        
-        public DbSet<UsersModel> Users { get; set; }
+
+        public DbSet<UserCreate> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.Entity<UsersModel>().ToTable("Users");
+            modelBuilder.Entity<UserCreate>().ToTable("Users");
         }
     }
 }
