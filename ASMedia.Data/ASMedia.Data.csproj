@@ -8,16 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Movies\" />
-    <Folder Include="Application\" />
-    <Folder Include="Services\" />
-    <Folder Include="Application\Users\" />
-    <Folder Include="Application\Series\" />
-    <Folder Include="Application\Tv\" />
+    <Compile Remove="Application\**" />
+    <EmbeddedResource Remove="Application\**" />
+    <None Remove="Application\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ASMedia.Shared\ASMedia.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
