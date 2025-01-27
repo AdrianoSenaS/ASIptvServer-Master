@@ -26,6 +26,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ASMedia.Shared\ASMedia.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="readname.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

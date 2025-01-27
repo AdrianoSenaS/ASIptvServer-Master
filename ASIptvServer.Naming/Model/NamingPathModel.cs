@@ -2,12 +2,7 @@
 {
     public class NamingPathModel
     {
-        public NamingPathModel() { }
-        public string Path { get; set; }
-        public NamingPathModel(string path)
-        {
-            Path = path;
-        }
-
+        public string? Path { get; set; }
+      
     }
 }

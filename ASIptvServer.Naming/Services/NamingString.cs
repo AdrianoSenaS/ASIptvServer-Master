@@ -18,27 +18,30 @@ namespace ASMedia.Naming.Services
         {
             try
             {
-                EmptyYear = Regex.Replace(name.Path, NamingRegex.YearString, "").Trim();
-                Name = Regex.Replace(EmptyYear, NamingRegex.RemoveS, "").Trim();
-                var ipunt = name.Path.Replace("-", "").Replace("(", "").Replace(")", "").Trim();
-                Year = NamingRegex.YearRegex.Match(ipunt);
-                Serie = NamingRegex.Serie.Match(name.Path);
-                if (Serie.Success)
+                if (name.Path != null)
                 {
-                    IsSerie = true;
-                }
-                else
-                {
-                    IsSerie = false;
+                    EmptyYear = Regex.Replace(name.Path, NamingRegex.YearString, "").Trim();
+                    Name = Regex.Replace(EmptyYear, NamingRegex.RemoveS, "").Trim();
+                    var ipunt = name.Path.Replace("-", "").Replace("(", "").Replace(")", "").Trim();
+                    Year = NamingRegex.YearRegex.Match(ipunt);
+                    Serie = NamingRegex.Serie.Match(name.Path);
+                    if (Serie.Success)
+                    {
+                        IsSerie = true;
+                    }
+                    else
+                    {
+                        IsSerie = false;
 
+                    }
+                    if (EmptyYear == string.Empty || Name == string.Empty)
+                    {
+                        Naming.Name = name.Path;
+                    }
+                    Naming.Name = Name;
+                    Naming.Year = Year.Value;
+                    Naming.IsSerie = IsSerie;
                 }
-                if (EmptyYear == string.Empty || Name == string.Empty)
-                {
-                    Naming.Name = name.Path;
-                }
-                Naming.Name = Name;
-                Naming.Year = Year.Value;
-                Naming.IsSerie = IsSerie;
                 return Naming;
             }
             catch (Exception ex)

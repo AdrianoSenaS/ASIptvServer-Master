@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMedia.M3U", "ASIptvServer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASMedia.Data", "ASIptvServer.Data\ASMedia.Data.csproj", "{730F884F-29CF-4556-8AEC-111DDB19E72F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASMedia.Shared", "ASMedia.Shared\ASMedia.Shared.csproj", "{B7C5E9E1-D2AB-42E5-B18D-28F16D9DB802}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{730F884F-29CF-4556-8AEC-111DDB19E72F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7C5E9E1-D2AB-42E5-B18D-28F16D9DB802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C5E9E1-D2AB-42E5-B18D-28F16D9DB802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C5E9E1-D2AB-42E5-B18D-28F16D9DB802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C5E9E1-D2AB-42E5-B18D-28F16D9DB802}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

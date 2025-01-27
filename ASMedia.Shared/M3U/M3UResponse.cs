@@ -1,6 +1,7 @@
-﻿namespace ASMedia.M3U.Model
+﻿
+namespace ASMedia.Shared.M3U
 {
-    public class M3uModel
+    public class M3UResponse
     {
        
         public int Id { get; set; }
@@ -12,6 +13,6 @@
         public bool Serie { get; set; }
         public bool Tv { get; set; }
         public bool Radio { get; set; }
-      
+       
     }
 }

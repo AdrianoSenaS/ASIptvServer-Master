@@ -1,5 +1,6 @@
 ﻿using ASMedia.M3U.Interfaces;
 using ASMedia.M3U.Model;
+using ASMedia.Shared.M3U;
 
 namespace ASMedia.M3U.Application
 {
@@ -10,12 +11,25 @@ namespace ASMedia.M3U.Application
         {
             _services = m3UServices;
         }
-        public List<M3uModel> GetM3U(M3uPathModel path)
+        public M3UResponse GetM3U(M3uPathResponse path)
         {
-            List<M3uModel> M3uList = new List<M3uModel>();
-            var readAll = File.ReadAllLines(path.Path);
-            M3uList = _services.M3U(readAll);
-            return M3uList;
+            M3UResponse m3UResponses = new M3UResponse();
+            M3uModel M3uList = new M3uModel();
+            if (path.Path != null)
+            {
+                var readAll = File.ReadAllLines(path.Path);
+                m3UResponses.Id = M3uList.Id;
+                M3uList = _services.M3U(readAll);
+                m3UResponses.Name = M3uList.Name;
+                m3UResponses.Logo = M3uList.Logo;
+                m3UResponses.Movies = M3uList.Movies;
+                m3UResponses.Tv = M3uList.Tv;
+                m3UResponses.Categories = M3uList.Categories;
+                m3UResponses.Url = M3uList.Url;
+                m3UResponses.Radio = M3uList.Radio;
+                m3UResponses.Serie = M3uList.Serie;
+            }
+            return m3UResponses;
         }
     }
 }

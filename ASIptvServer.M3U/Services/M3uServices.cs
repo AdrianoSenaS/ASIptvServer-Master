@@ -7,9 +7,25 @@ namespace ASMedia.M3U.Services
 {
     public class M3uServices : IM3uServices
     {
-        public List<M3uModel> M3U(string[] lines, IVerificationStrings _verificationStrings )
+        public string Verification(Match formatVideo, Match formatSeries, Match FormatRadio)
         {
-            List<M3uModel> m3Us = new List<M3uModel>();
+            if (formatVideo.Success && !formatSeries.Success && !FormatRadio.Success)
+            {
+                return "movie";
+            }
+            if (formatSeries.Success)
+            {
+                return "serie";
+            }
+            if (FormatRadio.Success)
+            {
+                return "radio";
+            }
+            return "other";
+        }
+        public M3uModel M3U(string[] lines)
+        {
+            M3uModel m3Us = new M3uModel();
             try
             {
                 int Id = 0;
@@ -30,7 +46,7 @@ namespace ASMedia.M3U.Services
                         var matchFormatVideo = M3uRegex.FormatVideo.Match(streamUrl);
                         var matchSeries = M3uRegex.FilterSeries.Match(streamUrl);
                         var matchFormatRadio = M3uRegex.FormatRadio.Match(streamUrl);
-                        var result = _verificationStrings.Verification(matchFormatVideo, matchSeries, matchFormatRadio);
+                        var result = Verification(matchFormatVideo, matchSeries, matchFormatRadio);
                         Match match = Regex.Match(lines[i], M3uRegex.M3UTags);
                         var match1 = M3uRegex.regex.Match(lines[i]);
                         var match3 = M3uRegex.regex3.Match(lines[i]);
@@ -97,7 +113,6 @@ namespace ASMedia.M3U.Services
                         {
                             m3U.Tv = true;
                         }
-                        m3Us.Add(m3U);
                     }
                 }
                 return m3Us;

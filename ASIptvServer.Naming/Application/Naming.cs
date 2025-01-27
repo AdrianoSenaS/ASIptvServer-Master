@@ -1,5 +1,6 @@
 ﻿using ASMedia.Naming.Model;
 using ASMedia.Naming.Interfaces;
+using ASMedia.Shared.Naming;
 
 namespace ASMedia.Naming.Application
 {
@@ -11,15 +12,23 @@ namespace ASMedia.Naming.Application
             _name = naming;
         }
 
-        public NamingModel GetNaming(NamingPathModel naming)
+        public NamingResponse  GetNaming(NamingPathCreate naming)
         {
             if(naming != null)
             {
-                return _name.SetNaming(naming);
+                NamingPathModel model = new NamingPathModel();
+                NamingResponse response = new NamingResponse();
+                model.Path = naming.Path;
+                NamingModel namingModel = _name.SetNaming(model);
+                response.Name = namingModel.Name;
+                response.Lang = namingModel.Lang;
+                response.Year = namingModel.Year;
+                response.IsSerie = namingModel.IsSerie;
+                return response;
             }
             else
             {
-                return new NamingModel
+                return new NamingResponse
                 {
                     Name = "Não encontrado"
                 };
