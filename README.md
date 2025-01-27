@@ -1,6 +1,6 @@
 # ASMedia
 <p align="center">
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/61697830/395658951-90de0f84-d689-450f-8b42-3b565a6ebce5.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20241213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241213T181814Z&X-Amz-Expires=300&X-Amz-Signature=fe9702376e944cd015b28570e8056042d0c2fa7f64e38e725fdacf67bdc539de&X-Amz-SignedHeaders=host" alt="ASIptvServer Logo" />
+<img src="https://github.com/user-attachments/assets/11bbe2f6-56f2-4f6e-99b4-b2827d55cb19" alt="ASIptvServer Logo" />
 </p>
 
 ASMedia é um media server escrito em C# que fornece uma solução robusta para gerenciamento de conteúdo como filmes, séries e TV ao vivo, além de gerenciar usuários. Este projeto é ideal para quem deseja uma plataforma completa de mídia com suporte à leitura de arquivos e URLs no formato M3U e arqvuios de mídia interno e externo.
