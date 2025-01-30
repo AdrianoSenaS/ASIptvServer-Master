@@ -8,5 +8,6 @@
         public string? Email { get; set; }
         public bool? Status { get; set; }
         public string? UserAcount { get; set; }
+        public List<Permissions>? Permissions { get; set; }
     }
 }

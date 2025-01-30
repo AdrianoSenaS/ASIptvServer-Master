@@ -17,7 +17,9 @@ namespace ASMedia.Data.DataDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserCreate>()
-                .ToTable("Users");
+                .HasMany(user => user.Permissions)
+                .WithOne()
+                .HasForeignKey("Users");
             modelBuilder.Entity<MoviesResponse>()
                 .HasMany(movies=> movies.Genres)
                 .WithOne()
