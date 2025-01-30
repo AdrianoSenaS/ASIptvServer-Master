@@ -13,6 +13,7 @@
         public List<Genres>? Genres { get; set; }
         public int? Vote_Average { get; set; }
         public int? Vote_Count { get; set; }
+        public string? Url { get; set; }
     }
     public class Genres
     {
