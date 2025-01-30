@@ -8,5 +8,6 @@ namespace ASMedia.Shared.Model.Tv
         public string? Poster_Path { get; set; }
         public string? Categories { get; set; }
         public string? Url { get; set; }
+        public bool?  Adult { get; set; }
     }
 }
