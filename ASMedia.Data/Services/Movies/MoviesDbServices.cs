@@ -30,7 +30,9 @@ namespace ASMedia.Data.Services.Movies
         {
             try
             {
-                List<MoviesResponse> movies = await DbContext.Movies.ToListAsync();
+                List<MoviesResponse> movies = await DbContext.Movies
+                    .Include(movie=>movie.Genres)
+                    .ToListAsync();
                 return movies;
             }
             catch (Exception ex)
@@ -42,7 +44,9 @@ namespace ASMedia.Data.Services.Movies
         {
             try
             {
-                MoviesResponse? response = await DbContext.Movies.FirstOrDefaultAsync(x => x.Id == Id);
+                MoviesResponse? response = await DbContext.Movies
+                    .Include(movie=>movie.Genres)
+                    .FirstOrDefaultAsync(x => x.Id == Id);
                 if (response != null)
                 {
                     return response;
