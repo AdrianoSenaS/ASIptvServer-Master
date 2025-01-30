@@ -15,9 +15,16 @@ namespace ASMedia.Data.DataDbContext
         public DbSet<SeriesResponse> Series { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserCreate>().ToTable("Users");
-            modelBuilder.Entity<MoviesResponse>().ToTable("Movies");
-            modelBuilder.Entity<SeriesResponse>().ToTable("Series");
+            modelBuilder.Entity<UserCreate>()
+                .ToTable("Users");
+            modelBuilder.Entity<MoviesResponse>()
+                .HasMany(movies=> movies.Genres)
+                .WithOne()
+                .HasForeignKey("Movies");
+            modelBuilder.Entity<SeriesResponse>()
+                .HasMany(series=>series.Genres)
+                .WithOne()
+                .HasForeignKey("Series");
         }
     }
 }
