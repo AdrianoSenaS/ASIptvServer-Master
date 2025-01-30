@@ -9,7 +9,7 @@
         public string? Password { get; set; }
         public bool? Status { get; set; }
         public string? UserAcount { get; set; }
-        public List<Permissions>? Permissions { get; set; }
+        public List<Permissions>? Permission { get; set; }
     }
     public class Permissions
     {
