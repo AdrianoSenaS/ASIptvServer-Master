@@ -64,10 +64,15 @@ namespace ASMedia.Data.Services.Movies
                 if (response != null) 
                 {
                     DbContext.Entry(movies).State = EntityState.Detached;
+                    DbContext.Movies.Update(movies);
+                    DbContext.SaveChanges();
+                    return "Ok";
                 }
-                DbContext.Movies.Update(movies);
-                DbContext.SaveChanges();
-                return "Ok";
+                else
+                {
+                    throw new Exception("Filme não encotrado");
+                }
+               
             }catch(Exception ex)
             {
                 throw new Exception($"{ex.Message}", ex);
