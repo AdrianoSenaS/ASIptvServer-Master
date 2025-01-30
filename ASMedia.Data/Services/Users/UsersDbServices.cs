@@ -79,10 +79,15 @@ namespace ASMedia.Data.Db.Users
                 if (model != null)
                 {
                     DbContext.Entry(users).State = EntityState.Detached;
+                    DbContext.Users.Update(users);
+                    DbContext.SaveChanges();
+                    return "OK";
                 }
-                DbContext.Users.Update(users);
-                DbContext.SaveChanges();
-                return "OK";
+                else
+                {
+                    throw new Exception("Usuário não encotrado");
+                }
+               
             }
             catch (Exception ex)
             {
