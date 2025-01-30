@@ -29,7 +29,9 @@ namespace ASMedia.Data.Db.Users
         {
             try
             {
-                List<UserCreate> users = await DbContext.Users.ToListAsync();
+                List<UserCreate> users = await DbContext.Users
+                    .Include(user=>user.Permission)
+                    .ToListAsync();
                 List<UserResponse> user = users.Select(User => new UserResponse
                 {
                     Id = User.Id,
@@ -38,6 +40,7 @@ namespace ASMedia.Data.Db.Users
                     Email = User.Email,
                     UserAcount = User.UserAcount,
                     Status = User.Status,
+                    Permission = User.Permission,
                 }).ToList();
                 return user;
             }
@@ -50,7 +53,9 @@ namespace ASMedia.Data.Db.Users
         {
             try
             {
-                UserCreate? users = await DbContext.Users.FirstOrDefaultAsync(x => x.Id == Id);
+                UserCreate? users = await DbContext.Users
+                    .Include(user => user.Permission)
+                    .FirstOrDefaultAsync(x => x.Id == Id);
                 if (users != null)
                 {
                     UserResponse user = new UserResponse
@@ -61,6 +66,7 @@ namespace ASMedia.Data.Db.Users
                         Email = users.Email,
                         UserAcount = users.UserAcount,
                         Status = users.Status,
+                        Permission = users.Permission,
                     };
                     return user;
                 }
