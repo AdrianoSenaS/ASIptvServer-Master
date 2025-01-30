@@ -29,7 +29,9 @@ namespace ASMedia.Data.Services.Series
         {
             try
             {
-                List<SeriesResponse> series = await DbContext.Series.ToListAsync();
+                List<SeriesResponse> series = await DbContext.Series
+                    .Include(serie=>serie.Genres)
+                    .ToListAsync();
                 if (series != null)
                 {
                     return series;
@@ -48,7 +50,9 @@ namespace ASMedia.Data.Services.Series
         {
             try
             {
-                SeriesResponse? series = await DbContext.Series.FirstOrDefaultAsync(x => x.Id == id);
+                SeriesResponse? series = await DbContext.Series
+                    .Include(serie => serie.Genres)
+                    .FirstOrDefaultAsync(x => x.Id == id);
                 if (series != null)
                 {
                     return series;
