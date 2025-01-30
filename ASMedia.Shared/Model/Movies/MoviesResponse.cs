@@ -16,6 +16,7 @@ namespace ASMedia.Shared.Model.Movies
         public int? Vote_Average { get; set; }
         public int? Vote_Count { get; set; }
         public string? Url { get; set; }
+        public bool? Adult { get; set; }
     }
     public class Genres
     {
